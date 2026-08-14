@@ -69,6 +69,7 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
   const isCantinho = project.slug === "cantinho-do-acai";
   const isArenaX = project.slug === "arenax";
   const isMarcai = project.slug === "marcai";
+  const isGymTracker = project.slug === "gym-tracker";
   const desktopMedia = project.gallery.filter((media) => media.layout === "wide");
   const mobileMedia = project.gallery.filter((media) => media.layout === "mobile");
   return (
@@ -118,7 +119,7 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
           </figure>
         )}
       </section>
-      {(isCantinho || isArenaX || isMarcai) && (
+      {(isCantinho || isArenaX || isMarcai || isGymTracker) && (
         <>
           <section className={styles.section} data-reveal>
             <p className="eyebrow">{text.problem}</p>
@@ -210,7 +211,7 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
           </section>
         </>
       )}
-      {(isArenaX || isMarcai) &&
+      {(isArenaX || isMarcai || isGymTracker) &&
         project.story?.map((section, index) => {
           const media = desktopMedia[index + 1];
           const isResponsive = index === project.story!.length - 1;
@@ -249,7 +250,7 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
             </section>
           );
         })}
-      {!isCantinho && !isArenaX && !isMarcai && (
+      {!isCantinho && !isArenaX && !isMarcai && !isGymTracker && (
         <section className={styles.section} data-reveal>
           <p className="project-copy">{text.noDetails}</p>
         </section>
@@ -262,27 +263,31 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
           ))}
         </div>
       </section>
-      {project.gallery.length > 0 && !isArenaX && !isCantinho && !isMarcai && (
-        <section className={styles.section} data-reveal>
-          <p className="eyebrow">{text.media}</p>
-          <div className={styles.gallery}>
-            {project.gallery.map((media) => (
-              <div
-                key={media.label}
-                className={styles.mediaSlot}
-                aria-label={media.alt}
-              >
+      {project.gallery.length > 0 &&
+        !isArenaX &&
+        !isCantinho &&
+        !isMarcai &&
+        !isGymTracker && (
+          <section className={styles.section} data-reveal>
+            <p className="eyebrow">{text.media}</p>
+            <div className={styles.gallery}>
+              {project.gallery.map((media) => (
+                <div
+                  key={media.label}
+                  className={styles.mediaSlot}
+                  aria-label={media.alt}
+                >
+                  <span>{text.pending}</span>
+                  <strong>{media.label}</strong>
+                </div>
+              ))}
+              <div className={`${styles.mediaSlot} ${styles.mobileSlot}`}>
                 <span>{text.pending}</span>
-                <strong>{media.label}</strong>
+                <strong>{text.responsive}</strong>
               </div>
-            ))}
-            <div className={`${styles.mediaSlot} ${styles.mobileSlot}`}>
-              <span>{text.pending}</span>
-              <strong>{text.responsive}</strong>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )}
       <section className={styles.section} data-reveal>
         <p className="eyebrow">{text.links}</p>
         <a
@@ -291,7 +296,7 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {isArenaX || isMarcai ? text.github : text.repository}{" "}
+          {isArenaX || isMarcai || isGymTracker ? text.github : text.repository}{" "}
           <span aria-hidden="true">↗</span>
         </a>
       </section>

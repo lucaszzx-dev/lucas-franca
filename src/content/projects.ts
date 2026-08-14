@@ -391,6 +391,96 @@ const marcaiGalleryEn = [
   },
 ].map((media) => ({ type: "image" as const, ...media }));
 
+const gymTrackerGalleryPt = [
+  {
+    label: "Visão geral",
+    alt: "Painel inicial do Gym Tracker com resumo de treinos e evolução.",
+    layout: "wide" as const,
+    src: "/projects/gym-tracker/home-gym-tracker.png",
+  },
+  {
+    label: "Treino ativo",
+    alt: "Detalhes de treino com exercício, séries, repetições e carga.",
+    layout: "wide" as const,
+    src: "/projects/gym-tracker/meus-treinos-gym-tracker.png",
+  },
+  {
+    label: "Evolução",
+    alt: "Painel de evolução com indicadores de volume, exercícios e carga média.",
+    layout: "wide" as const,
+    src: "/projects/gym-tracker/evolução-gym-tracker.png",
+  },
+  {
+    label: "Peso corporal",
+    alt: "Acompanhamento de peso corporal e meta no Gym Tracker.",
+    layout: "wide" as const,
+    src: "/projects/gym-tracker/peso-gym-tracker.png",
+  },
+  {
+    label: "Painel mobile",
+    alt: "Painel inicial do Gym Tracker em dispositivos móveis.",
+    layout: "mobile" as const,
+    src: "/projects/gym-tracker/home-gym-tracker-mobile.png",
+  },
+  {
+    label: "Treinos mobile",
+    alt: "Biblioteca de treinos adaptada para dispositivos móveis.",
+    layout: "mobile" as const,
+    src: "/projects/gym-tracker/treinos-gym-tracker-mobile.png",
+  },
+  {
+    label: "Calendário mobile",
+    alt: "Calendário de treinos em dispositivos móveis.",
+    layout: "mobile" as const,
+    src: "/projects/gym-tracker/calendario-gym-tracker-mobile.png",
+  },
+].map((media) => ({ type: "image" as const, ...media }));
+
+const gymTrackerGalleryEn = [
+  {
+    label: "Overview",
+    alt: "Gym Tracker home dashboard with a workout and progress summary.",
+    layout: "wide" as const,
+    src: "/projects/gym-tracker/home-gym-tracker.png",
+  },
+  {
+    label: "Active workout",
+    alt: "Workout details with an exercise, sets, repetitions and load.",
+    layout: "wide" as const,
+    src: "/projects/gym-tracker/meus-treinos-gym-tracker.png",
+  },
+  {
+    label: "Progress",
+    alt: "Progress dashboard with volume, exercise and average load indicators.",
+    layout: "wide" as const,
+    src: "/projects/gym-tracker/evolução-gym-tracker.png",
+  },
+  {
+    label: "Body weight",
+    alt: "Gym Tracker body weight and goal tracking screen.",
+    layout: "wide" as const,
+    src: "/projects/gym-tracker/peso-gym-tracker.png",
+  },
+  {
+    label: "Mobile dashboard",
+    alt: "Gym Tracker home dashboard on mobile devices.",
+    layout: "mobile" as const,
+    src: "/projects/gym-tracker/home-gym-tracker-mobile.png",
+  },
+  {
+    label: "Mobile workouts",
+    alt: "Gym Tracker workout library adapted for mobile devices.",
+    layout: "mobile" as const,
+    src: "/projects/gym-tracker/treinos-gym-tracker-mobile.png",
+  },
+  {
+    label: "Mobile calendar",
+    alt: "Gym Tracker workout calendar on mobile devices.",
+    layout: "mobile" as const,
+    src: "/projects/gym-tracker/calendario-gym-tracker-mobile.png",
+  },
+].map((media) => ({ type: "image" as const, ...media }));
+
 export const projects: LocalizedProjects = {
   "pt-BR": [
     {
@@ -540,14 +630,42 @@ export const projects: LocalizedProjects = {
       slug: "gym-tracker",
       title: "Gym Tracker",
       featured: false,
-      status: "Case study a detalhar",
+      status: "Case study completo",
       role: "Desenvolvimento front-end",
       shortDescription:
         "Aplicação para organizar treinos e acompanhar evolução física.",
       description: "Aplicação para organizar treinos e acompanhar a evolução física.",
       technologies: ["React", "JavaScript", "Firebase", "Recharts", "Vite"],
       repositoryUrl: "https://github.com/lucaszzx-dev/gym-tracker",
-      gallery: [],
+      problem:
+        "Acompanhar uma rotina de treinamento exige organizar exercícios, séries, cargas e evolução ao longo do tempo.",
+      solution:
+        "Uma interface que centraliza treinos, exercícios, registros de peso e dados de evolução para tornar o acompanhamento da rotina mais organizado.",
+      highlights: [
+        "Biblioteca e organização de treinos",
+        "Exercícios com séries, repetições e cargas",
+        "Acompanhamento de peso e metas",
+        "Indicadores de evolução e volume",
+      ],
+      story: [
+        {
+          label: "Organização de treinos",
+          body: "A biblioteca concentra as rotinas, enquanto o treino ativo apresenta exercícios, séries, repetições e carga.",
+        },
+        {
+          label: "Evolução",
+          body: "O painel reúne indicadores de treinos, exercícios, volume estimado e carga média.",
+        },
+        {
+          label: "Peso e metas",
+          body: "O registro de peso permite acompanhar medidas e definir uma meta.",
+        },
+        {
+          label: "Responsividade",
+          body: "As principais áreas da rotina também foram adaptadas para dispositivos móveis.",
+        },
+      ],
+      gallery: gymTrackerGalleryPt,
     },
   ],
   en: [
@@ -698,14 +816,42 @@ export const projects: LocalizedProjects = {
       slug: "gym-tracker",
       title: "Gym Tracker",
       featured: false,
-      status: "Case study to be expanded",
+      status: "Complete case study",
       role: "Front-end development",
       shortDescription: "Application to organize workouts and track physical progress.",
       description:
         "An application for organizing workouts and tracking physical progress.",
       technologies: ["React", "JavaScript", "Firebase", "Recharts", "Vite"],
       repositoryUrl: "https://github.com/lucaszzx-dev/gym-tracker",
-      gallery: [],
+      problem:
+        "Tracking a workout routine requires organizing exercises, sets, loads and progress over time.",
+      solution:
+        "An interface that centralizes workouts, exercises, weight records and progress data to make routine tracking more organized.",
+      highlights: [
+        "Workout library and organization",
+        "Exercises with sets, repetitions and loads",
+        "Weight and goal tracking",
+        "Progress and volume indicators",
+      ],
+      story: [
+        {
+          label: "Workout organization",
+          body: "The library gathers routines, while the active workout presents exercises, sets, repetitions and load.",
+        },
+        {
+          label: "Progress",
+          body: "The dashboard brings together workout, exercise, estimated volume and average load indicators.",
+        },
+        {
+          label: "Weight and goals",
+          body: "Weight records make it possible to follow measurements and set a goal.",
+        },
+        {
+          label: "Responsiveness",
+          body: "The main routine areas were also adapted for mobile devices.",
+        },
+      ],
+      gallery: gymTrackerGalleryEn,
     },
   ],
 };
