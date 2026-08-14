@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   },
   description:
     "Portfólio de Lucas França, desenvolvedor front-end em evolução para full-stack.",
+  openGraph: {
+    title: "Lucas França | Front-end Developer",
+    description: "Portfólio pessoal em construção.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
