@@ -25,8 +25,8 @@
   aspect-ratio: 1;
   place-items: center;
   border-radius: var(--radius-xs);
-  background: linear-gradient(135deg, var(--color-accent), #ff4d5d);
-  color: var(--color-text-primary);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
   font-size: var(--text-xs);
 }
 .nav {
