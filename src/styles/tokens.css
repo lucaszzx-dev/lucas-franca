@@ -1,29 +1,95 @@
 :root {
   color-scheme: dark;
 
+  /* Colors */
   --color-surface-base: #0b0e0c;
-  --color-surface-raised: #131814;
-  --color-text-primary: #f4f7f3;
-  --color-text-secondary: #adb7ae;
-  --color-text-muted: #768078;
-  --color-border-subtle: #263029;
-  --color-accent: #8fbd62;
+  --color-surface-subtle: #101511;
+  --color-surface-raised: #171d18;
+  --color-surface-overlay: #202821;
+  --color-text-primary: #f5f8f4;
+  --color-text-secondary: #c2cbc2;
+  --color-text-muted: #8f9a90;
+  --color-text-inverse: #0b0e0c;
+  --color-border-subtle: #2d372e;
+  --color-border-strong: #526154;
+  --color-accent: #9bcb6c;
+  --color-accent-hover: #b6e687;
+  --color-accent-active: #7ead4f;
+  --color-accent-contrast: #10210a;
+  --color-focus: #c9f59a;
+  --color-error: #ffb4ab;
+  --color-error-surface: #3d1416;
 
-  --font-sans: Arial, Helvetica, sans-serif;
+  /* Typography */
+  --font-sans: var(--font-space-grotesk), system-ui, sans-serif;
   --font-mono: "Courier New", monospace;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: clamp(1.875rem, 3vw, 2.5rem);
+  --text-4xl: clamp(2.25rem, 5vw, 4rem);
+  --text-display: clamp(3rem, 9vw, 8rem);
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+  --tracking-tight: -0.03em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.08em;
 
-  --space-2xs: 0.25rem;
-  --space-xs: 0.5rem;
-  --space-sm: 0.75rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
+  /* Spacing: 4px base unit */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
 
+  /* Layout */
   --content-max-width: 75rem;
+  --content-narrow-width: 46rem;
   --page-gutter: clamp(1.25rem, 4vw, 4rem);
-  --radius-sm: 0.375rem;
+  --grid-columns: 12;
+  --grid-gap: clamp(1rem, 2vw, 2rem);
+  --breakpoint-tablet: 48rem;
+  --breakpoint-desktop: 64rem;
+  --breakpoint-wide: 90rem;
+
+  /* Borders and elevation */
+  --border-width: 1px;
+  --border-style: solid;
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
-  --transition-base: 180ms ease;
+  --radius-lg: 1rem;
+  --radius-pill: 9999px;
+
+  /* Motion */
+  --duration-instant: 100ms;
+  --duration-fast: 180ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* Layering */
+  --z-base: 0;
+  --z-raised: 1;
+  --z-header: 10;
+  --z-overlay: 20;
+  --z-modal: 30;
+  --z-toast: 40;
+  --z-cursor: 50;
 }

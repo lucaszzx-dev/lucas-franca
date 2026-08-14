@@ -1,0 +1,96 @@
+.container {
+  width: min(100% - (var(--page-gutter) * 2), var(--content-max-width));
+  margin-inline: auto;
+}
+
+.container--narrow {
+  max-width: var(--content-narrow-width);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  gap: var(--grid-gap);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  gap: var(--space-2xs);
+  padding: 0.625rem var(--space-sm);
+  border: var(--border-width) var(--border-style) transparent;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-tight);
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.button:focus-visible,
+.text-link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.button--primary {
+  color: var(--color-accent-contrast);
+  background-color: var(--color-accent);
+}
+
+.button--secondary {
+  color: var(--color-text-primary);
+  border-color: var(--color-border-strong);
+  background-color: transparent;
+}
+
+.text-link {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-medium);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button--primary:hover {
+    background-color: var(--color-accent-hover);
+  }
+
+  .button--secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .text-link:hover {
+    color: var(--color-accent-hover);
+  }
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button--primary:active {
+  background-color: var(--color-accent-active);
+}
+
+.button--secondary:active {
+  border-color: var(--color-accent-active);
+  color: var(--color-accent-active);
+}
