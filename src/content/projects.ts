@@ -265,6 +265,132 @@ const arenaxGalleryEn = [
   },
 ].map((media) => ({ type: "image" as const, ...media }));
 
+const marcaiGalleryPt = [
+  {
+    label: "Home institucional",
+    alt: "Página inicial do Marcaí apresentando a proposta de organização para profissionais autônomos.",
+    layout: "wide" as const,
+    src: "/projects/marcai/marcai-home-desktop.png",
+  },
+  {
+    label: "Visão geral",
+    alt: "Painel do Marcaí com atalhos, indicadores e próximos atendimentos.",
+    layout: "wide" as const,
+    src: "/projects/marcai/marcai-visao-geral-desktop.png",
+  },
+  {
+    label: "Agenda",
+    alt: "Agenda mensal do Marcaí para organizar atendimentos.",
+    layout: "wide" as const,
+    src: "/projects/marcai/marcai-agenda-desktop.png",
+  },
+  {
+    label: "Orçamentos",
+    alt: "Tela de criação de orçamento do Marcaí com itens, validade e condições de pagamento.",
+    layout: "wide" as const,
+    src: "/projects/marcai/marcai-orcamentos-desktop.png",
+  },
+  {
+    label: "Serviços",
+    alt: "Catálogo de serviços do Marcaí com preço, duração e status.",
+    layout: "wide" as const,
+    src: "/projects/marcai/marcai-servicos-desktop.png",
+  },
+  {
+    label: "Financeiro e relatórios",
+    alt: "Relatórios do Marcaí com indicadores de agendamentos e valores do período.",
+    layout: "wide" as const,
+    src: "/projects/marcai/marcai-relatorios-desktop.png",
+  },
+  {
+    label: "Início mobile",
+    alt: "Versão mobile da página inicial do Marcaí.",
+    layout: "mobile" as const,
+    src: "/projects/marcai/marcai-home-mobile.png",
+  },
+  {
+    label: "Painel mobile",
+    alt: "Painel mobile do Marcaí com ações rápidas e indicadores.",
+    layout: "mobile" as const,
+    src: "/projects/marcai/marcai-dashboard-mobile.png",
+  },
+  {
+    label: "Agenda mobile",
+    alt: "Agenda do Marcaí em uma interface adaptada para dispositivos móveis.",
+    layout: "mobile" as const,
+    src: "/projects/marcai/marcai-agenda-mobile.png",
+  },
+  {
+    label: "Serviços mobile",
+    alt: "Catálogo de serviços do Marcaí em uma interface adaptada para dispositivos móveis.",
+    layout: "mobile" as const,
+    src: "/projects/marcai/marcai-servicos-mobile.png",
+  },
+].map((media) => ({ type: "image" as const, ...media }));
+
+const marcaiGalleryEn = [
+  {
+    label: "Marketing home",
+    alt: "Marcaí landing page presenting its organization proposition for self-employed professionals.",
+    layout: "wide" as const,
+    src: "/projects/marcai/marcai-home-desktop.png",
+  },
+  {
+    label: "Overview",
+    alt: "Marcaí dashboard with shortcuts, indicators and upcoming appointments.",
+    layout: "wide" as const,
+    src: "/projects/marcai/marcai-visao-geral-desktop.png",
+  },
+  {
+    label: "Schedule",
+    alt: "Marcaí monthly schedule for organizing appointments.",
+    layout: "wide" as const,
+    src: "/projects/marcai/marcai-agenda-desktop.png",
+  },
+  {
+    label: "Quotes",
+    alt: "Marcaí quote creation screen with items, validity date and payment terms.",
+    layout: "wide" as const,
+    src: "/projects/marcai/marcai-orcamentos-desktop.png",
+  },
+  {
+    label: "Services",
+    alt: "Marcaí service catalog with price, duration and status.",
+    layout: "wide" as const,
+    src: "/projects/marcai/marcai-servicos-desktop.png",
+  },
+  {
+    label: "Finance and reports",
+    alt: "Marcaí reports with appointment and period value indicators.",
+    layout: "wide" as const,
+    src: "/projects/marcai/marcai-relatorios-desktop.png",
+  },
+  {
+    label: "Mobile home",
+    alt: "Mobile version of the Marcaí landing page.",
+    layout: "mobile" as const,
+    src: "/projects/marcai/marcai-home-mobile.png",
+  },
+  {
+    label: "Mobile dashboard",
+    alt: "Marcaí mobile dashboard with quick actions and indicators.",
+    layout: "mobile" as const,
+    src: "/projects/marcai/marcai-dashboard-mobile.png",
+  },
+  {
+    label: "Mobile schedule",
+    alt: "Marcaí schedule in an interface adapted for mobile devices.",
+    layout: "mobile" as const,
+    src: "/projects/marcai/marcai-agenda-mobile.png",
+  },
+  {
+    label: "Mobile services",
+    alt: "Marcaí service catalog in an interface adapted for mobile devices.",
+    layout: "mobile" as const,
+    src: "/projects/marcai/marcai-servicos-mobile.png",
+  },
+].map((media) => ({ type: "image" as const, ...media }));
+
 export const projects: LocalizedProjects = {
   "pt-BR": [
     {
@@ -363,7 +489,7 @@ export const projects: LocalizedProjects = {
       slug: "marcai",
       title: "Marcaí",
       featured: true,
-      status: "Case study a detalhar",
+      status: "Case study completo",
       role: "Desenvolvimento full stack",
       shortDescription:
         "Plataforma de agenda, orçamentos e gestão para profissionais autônomos.",
@@ -371,7 +497,44 @@ export const projects: LocalizedProjects = {
         "Plataforma voltada à agenda, aos orçamentos e à gestão de profissionais autônomos.",
       technologies: ["React", "JavaScript", "PostgreSQL", "Supabase", "Vite", "Vitest"],
       repositoryUrl: "https://github.com/lucaszzx-dev/marcai",
-      gallery: [],
+      problem:
+        "Profissionais autônomos frequentemente precisam administrar agenda, clientes, serviços e orçamentos utilizando ferramentas separadas ou processos manuais.",
+      solution:
+        "Centralizar essas tarefas em uma aplicação única, permitindo acompanhar a rotina profissional e organizar informações importantes de forma mais simples.",
+      highlights: [
+        "Visão geral com indicadores e ações rápidas",
+        "Agenda de atendimentos em diferentes visualizações",
+        "Cadastro e gestão de clientes e serviços",
+        "Criação de orçamentos e acompanhamento financeiro",
+        "Relatórios para acompanhar atendimentos e valores",
+      ],
+      story: [
+        {
+          label: "Experiência principal",
+          body: "A visão geral concentra indicadores, próximos atendimentos e atalhos para as tarefas mais frequentes da rotina profissional.",
+        },
+        {
+          label: "Agenda",
+          body: "A agenda oferece visualizações para planejar o mês e acompanhar cada atendimento em um único lugar.",
+        },
+        {
+          label: "Orçamentos",
+          body: "A criação de propostas reúne itens, quantidades, validade e condições de pagamento antes do envio ao cliente.",
+        },
+        {
+          label: "Serviços",
+          body: "O catálogo organiza os serviços oferecidos com preço, duração e status de disponibilidade.",
+        },
+        {
+          label: "Financeiro e relatórios",
+          body: "As telas financeiras e de relatórios reúnem lançamentos, indicadores de atendimentos e valores do período.",
+        },
+        {
+          label: "Responsividade",
+          body: "As principais rotinas também estão disponíveis em telas mobile, preservando acesso à agenda, aos serviços e à visão geral.",
+        },
+      ],
+      gallery: marcaiGalleryPt,
     },
     {
       slug: "gym-tracker",
@@ -484,7 +647,7 @@ export const projects: LocalizedProjects = {
       slug: "marcai",
       title: "Marcaí",
       featured: true,
-      status: "Case study to be expanded",
+      status: "Complete case study",
       role: "Full-stack development",
       shortDescription:
         "Scheduling, quoting and management platform for self-employed professionals.",
@@ -492,7 +655,44 @@ export const projects: LocalizedProjects = {
         "A platform for scheduling, quoting and managing self-employed professionals.",
       technologies: ["React", "JavaScript", "PostgreSQL", "Supabase", "Vite", "Vitest"],
       repositoryUrl: "https://github.com/lucaszzx-dev/marcai",
-      gallery: [],
+      problem:
+        "Self-employed professionals often have to manage schedules, clients, services and quotes with separate tools or manual processes.",
+      solution:
+        "Bring these tasks together in one application so professionals can follow their routine and organize important information more simply.",
+      highlights: [
+        "Overview with indicators and quick actions",
+        "Appointment scheduling in multiple views",
+        "Client and service registration and management",
+        "Quote creation and financial tracking",
+        "Reports for appointments and period values",
+      ],
+      story: [
+        {
+          label: "Main experience",
+          body: "The overview brings together indicators, upcoming appointments and shortcuts for the professional routine's most frequent tasks.",
+        },
+        {
+          label: "Schedule",
+          body: "The schedule offers different views for planning the month and following each appointment in one place.",
+        },
+        {
+          label: "Quotes",
+          body: "Quote creation gathers items, quantities, validity dates and payment terms before sending a proposal to the client.",
+        },
+        {
+          label: "Services",
+          body: "The catalog organizes available services with their price, duration and availability status.",
+        },
+        {
+          label: "Finance and reports",
+          body: "Finance and report screens bring together records, appointment indicators and period values.",
+        },
+        {
+          label: "Responsiveness",
+          body: "The main routines are also available on mobile screens, keeping access to the schedule, services and overview.",
+        },
+      ],
+      gallery: marcaiGalleryEn,
     },
     {
       slug: "gym-tracker",

@@ -68,6 +68,7 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
   const text = labels[locale];
   const isCantinho = project.slug === "cantinho-do-acai";
   const isArenaX = project.slug === "arenax";
+  const isMarcai = project.slug === "marcai";
   const desktopMedia = project.gallery.filter((media) => media.layout === "wide");
   const mobileMedia = project.gallery.filter((media) => media.layout === "mobile");
   return (
@@ -117,7 +118,7 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
           </figure>
         )}
       </section>
-      {(isCantinho || isArenaX) && (
+      {(isCantinho || isArenaX || isMarcai) && (
         <>
           <section className={styles.section} data-reveal>
             <p className="eyebrow">{text.problem}</p>
@@ -209,7 +210,7 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
           </section>
         </>
       )}
-      {isArenaX &&
+      {(isArenaX || isMarcai) &&
         project.story?.map((section, index) => {
           const media = desktopMedia[index + 1];
           const isResponsive = index === project.story!.length - 1;
@@ -248,7 +249,7 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
             </section>
           );
         })}
-      {!isCantinho && !isArenaX && (
+      {!isCantinho && !isArenaX && !isMarcai && (
         <section className={styles.section} data-reveal>
           <p className="project-copy">{text.noDetails}</p>
         </section>
@@ -261,7 +262,7 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
           ))}
         </div>
       </section>
-      {project.gallery.length > 0 && !isArenaX && !isCantinho && (
+      {project.gallery.length > 0 && !isArenaX && !isCantinho && !isMarcai && (
         <section className={styles.section} data-reveal>
           <p className="eyebrow">{text.media}</p>
           <div className={styles.gallery}>
@@ -290,7 +291,8 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {isArenaX ? text.github : text.repository} <span aria-hidden="true">↗</span>
+          {isArenaX || isMarcai ? text.github : text.repository}{" "}
+          <span aria-hidden="true">↗</span>
         </a>
       </section>
     </main>
