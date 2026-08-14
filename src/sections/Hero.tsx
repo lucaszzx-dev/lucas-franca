@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { useMotion } from "@/animations/useMotion";
 import { useLocale } from "@/components/LocaleProvider";
 import styles from "./sections.module.css";
@@ -35,18 +36,16 @@ export function Hero() {
             </a>
           </div>
         </div>
-        <div
-          className={styles.photo}
-          role="img"
-          aria-label={hero.photoLabel}
-          data-reveal
-        >
-          {hero.photo.split("\n").map((line, index) => (
-            <span key={line}>
-              {index > 0 && <br />}
-              {line}
-            </span>
-          ))}
+        <div className={styles.photo} data-reveal>
+          <Image
+            src="/images/lucas-franca.jpg"
+            alt={hero.photoLabel}
+            width={1242}
+            height={1656}
+            priority
+            sizes="(max-width: 47.99rem) 100vw, 40rem"
+          />
+          <span aria-hidden="true">LF</span>
         </div>
       </div>
     </section>

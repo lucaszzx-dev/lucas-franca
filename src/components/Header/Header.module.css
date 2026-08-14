@@ -13,11 +13,21 @@
   justify-content: space-between;
 }
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--tracking-tight);
 }
-.brand span {
-  color: var(--color-accent);
+.brand strong {
+  display: grid;
+  width: 2rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: var(--radius-xs);
+  background: linear-gradient(135deg, var(--color-accent), #ff4d5d);
+  color: var(--color-text-primary);
+  font-size: var(--text-xs);
 }
 .nav {
   display: flex;

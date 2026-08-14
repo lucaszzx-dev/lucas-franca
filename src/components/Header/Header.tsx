@@ -15,7 +15,8 @@ export function Header() {
           href="#inicio"
           aria-label={content.header.homeLabel}
         >
-          Lucas França<span>.</span>
+          <strong>LF</strong>
+          <span>Lucas França</span>
         </a>
         <button
           className={styles.menu}

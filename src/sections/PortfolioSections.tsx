@@ -78,11 +78,16 @@ export function PortfolioSections() {
             {stack.eyebrow}
           </p>
           <h2 data-text-reveal>{stack.title}</h2>
-          <div className={styles.tags}>
-            {stack.items.map((item) => (
-              <span key={item} data-reveal>
-                {item}
-              </span>
+          <div className={styles.stackGroups}>
+            {stack.groups.map((group) => (
+              <div key={group.label} data-reveal>
+                <p className={styles.stackLabel}>{group.label}</p>
+                <div className={styles.tags}>
+                  {group.items.map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -107,11 +112,29 @@ export function PortfolioSections() {
           <p className={styles.copy} data-reveal>
             {contact.copy}
           </p>
+          <div className={styles.contactLinks} data-reveal>
+            <a href="mailto:lucaszzx.dev@gmail.com">Email ↗</a>
+            <a
+              href="https://github.com/lucaszzx-dev"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub ↗
+            </a>
+            <a
+              href="https://www.linkedin.com/in/lucas-fran%C3%A7a-171140429/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn ↗
+            </a>
+          </div>
         </div>
       </section>
       <footer className={styles.footer}>
         <div className="container">
-          © {new Date().getFullYear()} Lucas França — {footer}
+          <span className={styles.footerMark}>LF</span> © {new Date().getFullYear()}{" "}
+          Lucas França — {footer}
         </div>
       </footer>
     </div>
