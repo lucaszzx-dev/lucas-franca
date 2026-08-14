@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef } from "react";
 import { useMotion } from "@/animations/useMotion";
 import { useLocale } from "@/components/LocaleProvider";
@@ -26,6 +27,16 @@ export function PortfolioSections() {
           <div className={styles.cards}>
             {featuredProjects.map((project) => (
               <article key={project.slug} className={styles.card} data-reveal>
+                {project.gallery[0]?.src && (
+                  <Image
+                    className={styles.projectCover}
+                    src={project.gallery[0].src}
+                    alt={project.gallery[0].alt}
+                    width={1920}
+                    height={1080}
+                    sizes="(max-width: 47.99rem) 100vw, 33vw"
+                  />
+                )}
                 <p className={styles.notice}>{project.status}</p>
                 <h3>{project.title}</h3>
                 <p>{project.shortDescription}</p>

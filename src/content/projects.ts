@@ -31,6 +31,132 @@ const cantinhoGalleryEn = [
   alt,
 }));
 
+const arenaxGalleryPt = [
+  {
+    label: "Home do produto",
+    alt: "Tela inicial do ArenaX apresentando placar e a proposta principal da plataforma.",
+    layout: "wide" as const,
+    src: "/projects/arenax/hero-desktop.png",
+  },
+  {
+    label: "Painel do organizador",
+    alt: "Painel do organizador do ArenaX com indicadores de competições.",
+    layout: "wide" as const,
+    src: "/projects/arenax/dashboard-desktop.png",
+  },
+  {
+    label: "Criação de competição",
+    alt: "Tela do ArenaX para configuração inicial de uma competição.",
+    layout: "wide" as const,
+    src: "/projects/arenax/create-competition-desktop.png",
+  },
+  {
+    label: "Participantes e clubes",
+    alt: "Tela do ArenaX para importar clubes, organizar equipes e jogadores.",
+    layout: "wide" as const,
+    src: "/projects/arenax/participants-desktop.png",
+  },
+  {
+    label: "Partidas e chaveamento",
+    alt: "Tela do ArenaX com chaveamento, fases e calendário de partidas.",
+    layout: "wide" as const,
+    src: "/projects/arenax/bracket-desktop.png",
+  },
+  {
+    label: "Campeonatos públicos",
+    alt: "Tela pública do ArenaX para explorar e filtrar campeonatos.",
+    layout: "wide" as const,
+    src: "/projects/arenax/competitions-desktop.png",
+  },
+  {
+    label: "Experiência mobile",
+    alt: "Composição de telas móveis do ArenaX para home, campeonatos, painel e chaveamento.",
+    layout: "mobile" as const,
+    src: "/projects/arenax/home-mobile.png",
+  },
+  {
+    label: "Campeonatos no mobile",
+    alt: "Tela móvel do ArenaX para buscar competições públicas.",
+    layout: "mobile" as const,
+    src: "/projects/arenax/competitions-mobile.png",
+  },
+  {
+    label: "Painel no mobile",
+    alt: "Tela móvel do painel do organizador no ArenaX.",
+    layout: "mobile" as const,
+    src: "/projects/arenax/dashboard-mobile.png",
+  },
+  {
+    label: "Chaveamento no mobile",
+    alt: "Tela móvel do ArenaX exibindo as fases do chaveamento.",
+    layout: "mobile" as const,
+    src: "/projects/arenax/bracket-mobile.png",
+  },
+].map((media) => ({ type: "image" as const, ...media }));
+
+const arenaxGalleryEn = [
+  {
+    label: "Product home",
+    alt: "ArenaX home screen showing a score concept and the platform's main proposition.",
+    layout: "wide" as const,
+    src: "/projects/arenax/hero-desktop.png",
+  },
+  {
+    label: "Organizer dashboard",
+    alt: "ArenaX organizer dashboard with competition indicators.",
+    layout: "wide" as const,
+    src: "/projects/arenax/dashboard-desktop.png",
+  },
+  {
+    label: "Competition creation",
+    alt: "ArenaX screen for a competition's initial configuration.",
+    layout: "wide" as const,
+    src: "/projects/arenax/create-competition-desktop.png",
+  },
+  {
+    label: "Participants and clubs",
+    alt: "ArenaX screen for importing clubs and organizing teams and players.",
+    layout: "wide" as const,
+    src: "/projects/arenax/participants-desktop.png",
+  },
+  {
+    label: "Matches and brackets",
+    alt: "ArenaX screen with brackets, stages and match schedule.",
+    layout: "wide" as const,
+    src: "/projects/arenax/bracket-desktop.png",
+  },
+  {
+    label: "Public competitions",
+    alt: "ArenaX public screen for exploring and filtering competitions.",
+    layout: "wide" as const,
+    src: "/projects/arenax/competitions-desktop.png",
+  },
+  {
+    label: "Mobile experience",
+    alt: "Composition of ArenaX mobile screens for home, competitions, dashboard and brackets.",
+    layout: "mobile" as const,
+    src: "/projects/arenax/home-mobile.png",
+  },
+  {
+    label: "Mobile competitions",
+    alt: "ArenaX mobile screen for searching public competitions.",
+    layout: "mobile" as const,
+    src: "/projects/arenax/competitions-mobile.png",
+  },
+  {
+    label: "Mobile dashboard",
+    alt: "ArenaX organizer dashboard on mobile.",
+    layout: "mobile" as const,
+    src: "/projects/arenax/dashboard-mobile.png",
+  },
+  {
+    label: "Mobile brackets",
+    alt: "ArenaX mobile screen displaying bracket stages.",
+    layout: "mobile" as const,
+    src: "/projects/arenax/bracket-mobile.png",
+  },
+].map((media) => ({ type: "image" as const, ...media }));
+
 export const projects: LocalizedProjects = {
   "pt-BR": [
     {
@@ -70,12 +196,12 @@ export const projects: LocalizedProjects = {
       slug: "arenax",
       title: "ArenaX",
       featured: true,
-      status: "Case study a detalhar",
+      status: "Case study completo",
       role: "Desenvolvimento full stack",
       shortDescription:
         "Plataforma full stack para criar, administrar e acompanhar campeonatos amadores.",
       description:
-        "Plataforma para organizar a criação, administração e acompanhamento de campeonatos amadores.",
+        "ArenaX é uma plataforma full stack criada para organizar, administrar e acompanhar campeonatos amadores. A aplicação reúne criação de competições, clubes, participantes, confrontos, calendário, chaveamento, classificação e acompanhamento público.",
       technologies: [
         "React",
         "TypeScript",
@@ -87,7 +213,43 @@ export const projects: LocalizedProjects = {
         "Playwright",
       ],
       repositoryUrl: "https://github.com/lucaszzx-dev/ArenaX",
-      gallery: [],
+      problem:
+        "Organizar campeonatos amadores normalmente exige informações espalhadas entre planilhas, mensagens, grupos e anotações manuais. O desafio é centralizar a operação sem dificultar o acompanhamento dos resultados.",
+      solution:
+        "Uma plataforma com fluxos complementares para organizadores configurarem e administrarem competições, e para o público explorar campeonatos, filtros, resultados, calendário e classificação.",
+      highlights: [
+        "Criação de competições, regras, pontuação e calendário",
+        "Cadastro e importação de clubes, equipes e jogadores",
+        "Geração de confrontos, partidas e chaveamentos",
+        "Classificação, resultados e acompanhamento público",
+      ],
+      story: [
+        {
+          label: "Organização de campeonatos",
+          body: "O painel reúne indicadores e o acesso às competições do organizador, acompanhando o status de cada operação.",
+        },
+        {
+          label: "Configuração",
+          body: "A criação de uma competição começa por identidade, esporte, formato, inscrição, regras, pontuação e calendário.",
+        },
+        {
+          label: "Participantes e clubes",
+          body: "Clubes podem ser cadastrados ou importados, enquanto equipes e jogadores são organizados dentro de cada competição.",
+        },
+        {
+          label: "Partidas e chaveamento",
+          body: "A plataforma permite gerar confrontos, estruturar fases, acompanhar chaveamentos, calendário e resultados.",
+        },
+        {
+          label: "Experiência pública",
+          body: "Quem acompanha encontra campeonatos publicados, pesquisa competições, filtra por esporte e acompanha resultados e classificação.",
+        },
+        {
+          label: "Responsividade",
+          body: "As telas principais também foram concebidas para leitura e operação em dispositivos móveis, sem criar uma experiência paralela.",
+        },
+      ],
+      gallery: arenaxGalleryPt,
     },
     {
       slug: "marcai",
@@ -155,12 +317,12 @@ export const projects: LocalizedProjects = {
       slug: "arenax",
       title: "ArenaX",
       featured: true,
-      status: "Case study to be expanded",
+      status: "Complete case study",
       role: "Full-stack development",
       shortDescription:
         "Full-stack platform to create, manage and track amateur championships.",
       description:
-        "A platform for creating, managing and following amateur championships.",
+        "ArenaX is a full-stack platform built to organize, manage and follow amateur competitions. It brings together competition creation, clubs, participants, matches, scheduling, brackets, standings and public tracking.",
       technologies: [
         "React",
         "TypeScript",
@@ -172,7 +334,43 @@ export const projects: LocalizedProjects = {
         "Playwright",
       ],
       repositoryUrl: "https://github.com/lucaszzx-dev/ArenaX",
-      gallery: [],
+      problem:
+        "Amateur competitions are often managed across spreadsheets, messages, group chats and manual notes. The challenge is to centralize operations without making result tracking harder.",
+      solution:
+        "A platform with complementary flows: organizers configure and run competitions, while the public explores competitions, filters, results, schedules and standings.",
+      highlights: [
+        "Competition creation, rules, scoring and scheduling",
+        "Club, team and player registration and importing",
+        "Match generation, fixtures and brackets",
+        "Standings, results and public tracking",
+      ],
+      story: [
+        {
+          label: "Competition organization",
+          body: "The dashboard brings together indicators and access to the organizer's competitions, following the state of each operation.",
+        },
+        {
+          label: "Configuration",
+          body: "Competition creation starts with identity, sport, format, registration, rules, scoring and schedule.",
+        },
+        {
+          label: "Participants and clubs",
+          body: "Clubs can be registered or imported, while teams and players are organized within each competition.",
+        },
+        {
+          label: "Matches and brackets",
+          body: "The platform supports match generation, stage structure, brackets, schedules and result tracking.",
+        },
+        {
+          label: "Public experience",
+          body: "Spectators can find published competitions, search, filter by sport and follow results and standings.",
+        },
+        {
+          label: "Responsiveness",
+          body: "The main screens were also designed for clear reading and operation on mobile devices, without a separate experience.",
+        },
+      ],
+      gallery: arenaxGalleryEn,
     },
     {
       slug: "marcai",

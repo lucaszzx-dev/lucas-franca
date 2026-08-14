@@ -6,9 +6,16 @@ export interface ProjectMedia {
   type: "image";
   alt: string;
   layout: ProjectMediaLayout;
-  status: "pending";
+  status?: "pending";
   label: string;
   src?: string;
+}
+
+export interface CaseStudySection {
+  label: string;
+  title?: string;
+  body: string;
+  items?: string[];
 }
 
 export interface Project {
@@ -26,6 +33,7 @@ export interface Project {
   problem?: string;
   solution?: string;
   highlights?: string[];
+  story?: CaseStudySection[];
   gallery: ProjectMedia[];
 }
 

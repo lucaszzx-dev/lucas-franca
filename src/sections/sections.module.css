@@ -29,6 +29,12 @@
     border-color var(--duration-fast) var(--ease-standard),
     background-color var(--duration-fast) var(--ease-standard);
 }
+.projectCover {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+}
 .notice {
   color: var(--color-accent);
   font-size: var(--text-xs);
