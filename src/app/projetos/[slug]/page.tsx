@@ -1,25 +1,26 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { defaultLocale, siteContent } from "@/content/site";
+import { defaultLocale } from "@/content/site";
+import { getProject, getProjectSlugs } from "@/content/projects";
 import { ProjectCaseStudy } from "./ProjectCaseStudy";
 
 export function generateStaticParams() {
-  return [{ slug: "projeto-exemplo" }];
+  return getProjectSlugs();
 }
 
 export async function generateMetadata({
   params,
 }: PageProps<"/projetos/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  if (slug !== "projeto-exemplo") return {};
-  const project = siteContent[defaultLocale].project;
+  const project = getProject(defaultLocale, slug);
+  if (!project) return {};
   return {
     title: project.title,
-    description: project.description,
+    description: project.shortDescription,
     alternates: { canonical: `/projetos/${slug}` },
     openGraph: {
       title: project.title,
-      description: project.description,
+      description: project.shortDescription,
       type: "article",
     },
   };
@@ -27,6 +28,6 @@ export async function generateMetadata({
 
 export default async function CaseStudy({ params }: PageProps<"/projetos/[slug]">) {
   const { slug } = await params;
-  if (slug !== "projeto-exemplo") notFound();
-  return <ProjectCaseStudy />;
+  if (!getProject(defaultLocale, slug)) notFound();
+  return <ProjectCaseStudy slug={slug} />;
 }

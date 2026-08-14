@@ -34,6 +34,11 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
 }
+.secondaryWorks {
+  display: grid;
+  gap: var(--space-xs);
+  margin-top: var(--space-lg);
+}
 .copy {
   max-width: var(--content-narrow-width);
   margin-top: var(--space-md);

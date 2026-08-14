@@ -31,12 +31,8 @@ export const siteContent = {
     works: {
       eyebrow: "Selected works",
       title: "Projetos em destaque",
-      placeholder: "Placeholder — dados fictícios",
-      description:
-        "Descrição de exemplo para validar a estrutura dos futuros projetos reais.",
-      technologies: "React · JavaScript · Exemplo",
       action: "Ver case study",
-      items: ["Projeto exemplo 01", "Projeto exemplo 02", "Projeto exemplo 03"],
+      secondaryLabel: "Também no portfólio",
     },
     about: {
       eyebrow: "Sobre",
@@ -65,19 +61,6 @@ export const siteContent = {
       copy: "E-mail: contato@exemplo.com · GitHub e LinkedIn: links a definir.",
     },
     footer: "conteúdo em construção.",
-    project: {
-      eyebrow: "Case study placeholder",
-      title: "Projeto exemplo",
-      description:
-        "Descrição, problema, solução, tecnologias, imagens e links serão inseridos com conteúdo real.",
-      problemTitle: "Problema",
-      problem: "Placeholder.",
-      solutionTitle: "Solução",
-      solution: "Placeholder.",
-      technologiesTitle: "Tecnologias",
-      technologies: "Exemplo: React, JavaScript.",
-      links: "GitHub e demo: links a definir.",
-    },
   },
   en: {
     localeLabel: "English",
@@ -106,12 +89,8 @@ export const siteContent = {
     works: {
       eyebrow: "Selected work",
       title: "Selected work",
-      placeholder: "Placeholder — fictional data",
-      description:
-        "Example description used to validate the structure for future real projects.",
-      technologies: "React · JavaScript · Example",
       action: "View case study",
-      items: ["Example project 01", "Example project 02", "Example project 03"],
+      secondaryLabel: "Also in the portfolio",
     },
     about: {
       eyebrow: "About",
@@ -134,19 +113,6 @@ export const siteContent = {
       copy: "Email: contato@exemplo.com · GitHub and LinkedIn: links to be defined.",
     },
     footer: "content in progress.",
-    project: {
-      eyebrow: "Case study placeholder",
-      title: "Example project",
-      description:
-        "Description, problem, solution, technologies, images and links will be added with real content.",
-      problemTitle: "Problem",
-      problem: "Placeholder.",
-      solutionTitle: "Solution",
-      solution: "Placeholder.",
-      technologiesTitle: "Technologies",
-      technologies: "Example: React, JavaScript.",
-      links: "GitHub and demo: links to be defined.",
-    },
   },
 } as const;
 

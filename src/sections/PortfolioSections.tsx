@@ -4,13 +4,17 @@ import Link from "next/link";
 import { useRef } from "react";
 import { useMotion } from "@/animations/useMotion";
 import { useLocale } from "@/components/LocaleProvider";
+import { getProjects } from "@/content/projects";
 import styles from "./sections.module.css";
 
 export function PortfolioSections() {
-  const { content } = useLocale();
+  const { content, locale } = useLocale();
   const ref = useRef<HTMLDivElement>(null);
   useMotion(ref);
   const { works, about, stack, experience, contact, footer } = content;
+  const projects = getProjects(locale);
+  const featuredProjects = projects.filter((project) => project.featured);
+  const secondaryProjects = projects.filter((project) => !project.featured);
   return (
     <div ref={ref}>
       <section id="trabalhos" className={styles.section}>
@@ -20,16 +24,28 @@ export function PortfolioSections() {
           </p>
           <h2 data-text-reveal>{works.title}</h2>
           <div className={styles.cards}>
-            {works.items.map((title) => (
-              <article key={title} className={styles.card} data-reveal>
-                <p className={styles.notice}>{works.placeholder}</p>
-                <h3>{title}</h3>
-                <p>{works.description}</p>
-                <small>{works.technologies}</small>
-                <Link className="text-link" href="/projetos/projeto-exemplo">
+            {featuredProjects.map((project) => (
+              <article key={project.slug} className={styles.card} data-reveal>
+                <p className={styles.notice}>{project.status}</p>
+                <h3>{project.title}</h3>
+                <p>{project.shortDescription}</p>
+                <small>{project.technologies.join(" · ")}</small>
+                <Link className="text-link" href={`/projetos/${project.slug}`}>
                   {works.action}
                 </Link>
               </article>
+            ))}
+          </div>
+          <div className={styles.secondaryWorks} data-reveal>
+            <p className={styles.notice}>{works.secondaryLabel}</p>
+            {secondaryProjects.map((project) => (
+              <Link
+                key={project.slug}
+                className="text-link"
+                href={`/projetos/${project.slug}`}
+              >
+                {project.title} — {project.shortDescription}
+              </Link>
             ))}
           </div>
         </div>
