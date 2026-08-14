@@ -24,6 +24,10 @@
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-md);
   background: var(--color-surface-subtle);
+  transition:
+    transform var(--duration-base) var(--ease-emphasized),
+    border-color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
 }
 .notice {
   color: var(--color-accent);
@@ -52,6 +56,13 @@
   padding: var(--space-lg) 0;
   color: var(--color-text-muted);
   border-top: 1px solid var(--color-border-subtle);
+}
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-0.35rem);
+    border-color: var(--color-accent);
+    background: var(--color-surface-raised);
+  }
 }
 @media (max-width: 47.99rem) {
   .cards {
@@ -111,5 +122,11 @@
   }
   .intro {
     max-width: 34rem;
+  }
+  .hero {
+    padding-top: var(--space-2xl);
+  }
+  .photo {
+    min-height: 10rem;
   }
 }

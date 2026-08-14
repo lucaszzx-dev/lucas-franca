@@ -33,6 +33,40 @@ a {
   text-decoration: none;
 }
 
+.eyebrow {
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.project-page {
+  max-width: var(--content-narrow-width);
+  padding-block: var(--space-3xl);
+}
+
+.project-page h1 {
+  margin-top: var(--space-xs);
+  font-size: var(--text-4xl);
+  letter-spacing: var(--tracking-tight);
+}
+
+.project-page h2 {
+  margin-top: var(--space-xl);
+  font-size: var(--text-2xl);
+}
+
+.project-page p + p {
+  margin-top: var(--space-sm);
+}
+
+.project-copy {
+  margin-top: var(--space-md);
+  color: var(--color-text-secondary);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+}
+
 button {
   color: inherit;
   background: none;

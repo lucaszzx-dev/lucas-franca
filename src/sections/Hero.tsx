@@ -1,36 +1,52 @@
+"use client";
+
+import { useRef } from "react";
+import { useMotion } from "@/animations/useMotion";
+import { useLocale } from "@/components/LocaleProvider";
 import styles from "./sections.module.css";
 
 export function Hero() {
+  const { content } = useLocale();
+  const ref = useRef<HTMLElement>(null);
+  useMotion(ref, { hero: true });
+  const { hero } = content;
   return (
-    <section className={styles.hero} aria-labelledby="hero-title">
+    <section ref={ref} className={styles.hero} aria-labelledby="hero-title">
       <div className="container">
-        <p className={styles.eyebrow}>Disponível para novas conexões</p>
+        <p className={styles.eyebrow} data-reveal>
+          {hero.availability}
+        </p>
         <div className={styles.heroGrid}>
           <div>
-            <h1 id="hero-title">
-              Lucas
+            <h1 id="hero-title" data-text-reveal>
+              {hero.name[0]}
               <br />
-              França<span>.</span>
+              {hero.name[1]}
+              <span>.</span>
             </h1>
-            <p className={styles.role}>Front-end Developer</p>
-          </div>
-          <div className={styles.intro}>
-            <p>
-              Desenvolvedor front-end focado em transformar ideias em experiências
-              digitais modernas, funcionais e bem construídas.
+            <p className={styles.role} data-reveal>
+              {hero.role}
             </p>
+          </div>
+          <div className={styles.intro} data-reveal>
+            <p>{hero.description}</p>
             <a className="button button--primary" href="#trabalhos">
-              Ver trabalhos
+              {hero.action}
             </a>
           </div>
         </div>
         <div
           className={styles.photo}
           role="img"
-          aria-label="Placeholder temporário para foto de Lucas França"
+          aria-label={hero.photoLabel}
+          data-reveal
         >
-          Foto temporária
-          <br />a definir
+          {hero.photo.split("\n").map((line, index) => (
+            <span key={line}>
+              {index > 0 && <br />}
+              {line}
+            </span>
+          ))}
         </div>
       </div>
     </section>
