@@ -25,6 +25,8 @@ export const siteContent = {
       description:
         "Desenvolvedor front-end e graduando em Ciência da Computação. Construo produtos digitais modernos, funcionais e bem estruturados.",
       action: "Ver trabalhos",
+      kicker: ["Estudante de Ciência da Computação", "Criando produtos digitais"],
+      signature: ["Front-end", "Developer"],
       photo: "",
       photoLabel: "Retrato de Lucas França",
     },
@@ -38,6 +40,11 @@ export const siteContent = {
       eyebrow: "Sobre",
       title: "Construindo com intenção.",
       copy: "Aos 18 anos, em Taboão da Serra — São Paulo, estudo Ciência da Computação e desenvolvo interfaces com atenção à clareza, produto e execução. Tenho interesse em produtos digitais, tecnologia e negócios, com mentalidade empreendedora. Busco aprofundar minha base técnica, ampliar progressivamente minha atuação para full stack e assumir responsabilidades cada vez maiores em tecnologia.",
+      facts: [
+        { value: "18", label: "anos" },
+        { value: "SP", label: "Brasil" },
+        { value: "CS", label: "Ciência da Computação" },
+      ],
     },
     stack: {
       eyebrow: "Stack",
@@ -54,6 +61,12 @@ export const siteContent = {
       eyebrow: "Jornada",
       title: "Prática, estudo e construção.",
       copy: "2026 — Graduando em Ciência da Computação. Minha experiência prática vem da construção de aplicações web completas, do estudo contínuo e da vontade de transformar boas ideias em produtos digitais consistentes.",
+      milestones: [
+        { label: "Agora", value: "Front-end" },
+        { label: "2026", value: "Ciência da Computação" },
+        { label: "Construindo", value: "Projetos" },
+        { label: "Próximo", value: "Full stack" },
+      ],
     },
     contact: {
       eyebrow: "Contato",
@@ -83,6 +96,8 @@ export const siteContent = {
       description:
         "Front-end developer and Computer Science undergraduate building modern, functional and well-structured digital products.",
       action: "View work",
+      kicker: ["Computer Science student", "Building digital products"],
+      signature: ["Front-end", "Developer"],
       photo: "",
       photoLabel: "Portrait of Lucas França",
     },
@@ -96,6 +111,11 @@ export const siteContent = {
       eyebrow: "About",
       title: "Building with intention.",
       copy: "At 18, based in Taboão da Serra — São Paulo, I study Computer Science and build interfaces with attention to clarity, product and execution. I am interested in digital products, technology and business, with an entrepreneurial mindset. I aim to strengthen my technical foundation, progressively expand into full-stack development and take on increasing responsibility in technology.",
+      facts: [
+        { value: "18", label: "years old" },
+        { value: "SP", label: "Brazil" },
+        { value: "CS", label: "Computer Science" },
+      ],
     },
     stack: {
       eyebrow: "Stack",
@@ -115,6 +135,12 @@ export const siteContent = {
       eyebrow: "Journey",
       title: "Practice, learning and building.",
       copy: "2026 — Computer Science undergraduate. My practical experience comes from building complete web applications, continuous study and a drive to turn strong ideas into consistent digital products.",
+      milestones: [
+        { label: "Now", value: "Front-end" },
+        { label: "2026", value: "Computer Science" },
+        { label: "Building", value: "Projects" },
+        { label: "Next", value: "Full stack" },
+      ],
     },
     contact: {
       eyebrow: "Contact",

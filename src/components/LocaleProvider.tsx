@@ -14,16 +14,20 @@ const storageKey = "lucas-franca-locale";
 
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocale] = useState<Locale>(defaultLocale);
+  const [isHydrated, setIsHydrated] = useState(false);
   useEffect(() => {
-    const saved = localStorage.getItem(storageKey);
-    if (saved !== "pt-BR" && saved !== "en") return;
-    const timeout = window.setTimeout(() => setLocale(saved), 0);
+    const timeout = window.setTimeout(() => {
+      const saved = localStorage.getItem(storageKey);
+      if (saved === "pt-BR" || saved === "en") setLocale(saved);
+      setIsHydrated(true);
+    }, 0);
     return () => window.clearTimeout(timeout);
   }, []);
   useEffect(() => {
+    if (!isHydrated) return;
     document.documentElement.lang = locale;
     localStorage.setItem(storageKey, locale);
-  }, [locale]);
+  }, [isHydrated, locale]);
   return (
     <LocaleContext value={{ locale, content: siteContent[locale], setLocale }}>
       {children}

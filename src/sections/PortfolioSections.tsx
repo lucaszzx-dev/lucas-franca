@@ -25,24 +25,27 @@ export function PortfolioSections() {
           </p>
           <h2 data-text-reveal>{works.title}</h2>
           <div className={styles.cards}>
-            {featuredProjects.map((project) => (
+            {featuredProjects.map((project, index) => (
               <article key={project.slug} className={styles.card} data-reveal>
-                {project.gallery[0]?.src && (
-                  <Image
-                    className={styles.projectCover}
-                    src={project.gallery[0].src}
-                    alt={project.gallery[0].alt}
-                    width={1920}
-                    height={1080}
-                    sizes="(max-width: 47.99rem) 100vw, 33vw"
-                  />
-                )}
-                <p className={styles.notice}>{project.status}</p>
-                <h3>{project.title}</h3>
-                <p>{project.shortDescription}</p>
-                <small>{project.technologies.join(" · ")}</small>
-                <Link className="text-link" href={`/projetos/${project.slug}`}>
-                  {works.action}
+                <Link className={styles.workLink} href={`/projetos/${project.slug}`}>
+                  {project.gallery[0]?.src && (
+                    <Image
+                      className={styles.projectCover}
+                      src={project.gallery[0].src}
+                      alt={project.gallery[0].alt}
+                      width={1920}
+                      height={1080}
+                      sizes="(max-width: 47.99rem) 100vw, 70vw"
+                    />
+                  )}
+                  <span className={styles.workNumber}>0{index + 1}</span>
+                  <div className={styles.workOverlay}>
+                    <p className={styles.notice}>{project.status}</p>
+                    <h3>{project.title}</h3>
+                    <p>{project.shortDescription}</p>
+                    <small>{project.technologies.slice(0, 4).join(" · ")}</small>
+                    <span>{works.action} ↗</span>
+                  </div>
                 </Link>
               </article>
             ))}
@@ -52,10 +55,16 @@ export function PortfolioSections() {
             {secondaryProjects.map((project) => (
               <Link
                 key={project.slug}
-                className="text-link"
+                className={styles.secondaryWork}
                 href={`/projetos/${project.slug}`}
               >
-                {project.title} — {project.shortDescription}
+                <span className={styles.workNumber}>04</span>
+                <div>
+                  <h3>{project.title}</h3>
+                  <p>{project.shortDescription}</p>
+                  <small>{project.technologies.join(" · ")}</small>
+                </div>
+                <span aria-hidden="true">↗</span>
               </Link>
             ))}
           </div>
@@ -63,13 +72,39 @@ export function PortfolioSections() {
       </section>
       <section id="sobre" className={styles.section}>
         <div className="container">
-          <p className={styles.eyebrow} data-reveal>
-            {about.eyebrow}
-          </p>
-          <h2 data-text-reveal>{about.title}</h2>
-          <p className={styles.copy} data-reveal>
-            {about.copy}
-          </p>
+          <div className={styles.aboutGrid}>
+            <div className={styles.aboutPhoto} data-reveal>
+              <Image
+                src="/images/lucas-franca.jpg"
+                alt="Lucas França"
+                width={1242}
+                height={1656}
+                sizes="(max-width: 47.99rem) 100vw, 38vw"
+              />
+              <span>
+                LF
+                <br />
+                18
+              </span>
+            </div>
+            <div>
+              <p className={styles.eyebrow} data-reveal>
+                {about.eyebrow}
+              </p>
+              <h2 data-text-reveal>{about.title}</h2>
+              <p className={styles.copy} data-reveal>
+                {about.copy}
+              </p>
+              <dl className={styles.facts} data-reveal>
+                {about.facts.map((fact) => (
+                  <div key={fact.value}>
+                    <dt>{fact.value}</dt>
+                    <dd>{fact.label}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
         </div>
       </section>
       <section id="stack" className={styles.section}>
@@ -82,10 +117,17 @@ export function PortfolioSections() {
             {stack.groups.map((group) => (
               <div key={group.label} data-reveal>
                 <p className={styles.stackLabel}>{group.label}</p>
-                <div className={styles.tags}>
-                  {group.items.map((item) => (
-                    <span key={item}>{item}</span>
-                  ))}
+                <div className={styles.marquee}>
+                  <div className={styles.marqueeTrack}>
+                    {group.items.concat(group.items).map((item, index) => (
+                      <span
+                        key={`${item}-${index}`}
+                        aria-hidden={index >= group.items.length}
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -101,6 +143,14 @@ export function PortfolioSections() {
           <p className={styles.copy} data-reveal>
             {experience.copy}
           </p>
+          <div className={styles.journey} data-reveal>
+            {experience.milestones.map((milestone) => (
+              <span key={milestone.label}>
+                {milestone.label}
+                <strong>{milestone.value}</strong>
+              </span>
+            ))}
+          </div>
         </div>
       </section>
       <section id="contato" className={styles.section}>

@@ -18,7 +18,18 @@ export function Hero() {
           {hero.availability}
         </p>
         <div className={styles.heroGrid}>
-          <div>
+          <div className={styles.heroTitle}>
+            <div className={styles.heroIdentity} data-reveal>
+              <Image
+                src="/images/lucas-franca.jpg"
+                alt={hero.photoLabel}
+                width={96}
+                height={96}
+                priority
+                sizes="4rem"
+              />
+              <span>{hero.availability}</span>
+            </div>
             <h1 id="hero-title" data-text-reveal>
               {hero.name[0]}
               <br />
@@ -30,22 +41,21 @@ export function Hero() {
             </p>
           </div>
           <div className={styles.intro} data-reveal>
+            <span className={styles.heroKicker}>
+              {hero.kicker[0]}
+              <br />
+              {hero.kicker[1]}
+            </span>
             <p>{hero.description}</p>
             <a className="button button--primary" href="#trabalhos">
               {hero.action}
             </a>
           </div>
         </div>
-        <div className={styles.photo} data-reveal>
-          <Image
-            src="/images/lucas-franca.jpg"
-            alt={hero.photoLabel}
-            width={1242}
-            height={1656}
-            priority
-            sizes="(max-width: 47.99rem) 100vw, 40rem"
-          />
-          <span aria-hidden="true">LF</span>
+        <div className={styles.heroRule} aria-hidden="true">
+          <span>{hero.signature[0]}</span>
+          <strong>{hero.signature[1]}</strong>
+          <i>LF / 2026</i>
         </div>
       </div>
     </section>
