@@ -1,0 +1,58 @@
+.hero {
+  padding: var(--space-3xl) 0 var(--space-2xl);
+}
+.eyebrow {
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+.heroGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-xl);
+  align-items: end;
+  margin-top: var(--space-md);
+}
+.hero h1 {
+  font-size: var(--text-display);
+  line-height: 0.82;
+  letter-spacing: var(--tracking-tight);
+}
+.hero h1 span {
+  color: var(--color-accent);
+}
+.role {
+  margin-top: var(--space-md);
+  font-size: var(--text-xl);
+  color: var(--color-text-secondary);
+}
+.intro {
+  display: grid;
+  gap: var(--space-md);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+}
+.intro a {
+  justify-self: start;
+}
+.photo {
+  min-height: 12rem;
+  margin-top: var(--space-xl);
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-muted);
+  text-align: center;
+  background: var(--color-surface-subtle);
+}
+@media (max-width: 47.99rem) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+  .intro {
+    max-width: 34rem;
+  }
+}
