@@ -105,6 +105,17 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
       <section className={styles.section} data-reveal>
         <p className="eyebrow">{text.overview}</p>
         <p className="project-copy">{project.shortDescription}</p>
+        {isCantinho && desktopMedia[1]?.src && (
+          <figure className={styles.mediaImage}>
+            <Image
+              src={desktopMedia[1].src}
+              alt={desktopMedia[1].alt}
+              width={1920}
+              height={1080}
+              sizes="(max-width: 48rem) 100vw, 46rem"
+            />
+          </figure>
+        )}
       </section>
       {(isCantinho || isArenaX) && (
         <>
@@ -128,19 +139,73 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
           )}
         </>
       )}
+      {isCantinho && desktopMedia[2]?.src && (
+        <section className={styles.section} data-reveal>
+          <figure className={styles.mediaImage}>
+            <Image
+              src={desktopMedia[2].src}
+              alt={desktopMedia[2].alt}
+              width={1920}
+              height={1080}
+              sizes="(max-width: 48rem) 100vw, 46rem"
+            />
+          </figure>
+        </section>
+      )}
       {isCantinho && (
         <>
           <section className={styles.section} data-reveal>
             <p className="eyebrow">{text.experience}</p>
             <p className="project-copy">{text.cantinhoExperience}</p>
+            {desktopMedia[3]?.src && (
+              <figure className={styles.mediaImage}>
+                <Image
+                  src={desktopMedia[3].src}
+                  alt={desktopMedia[3].alt}
+                  width={1920}
+                  height={1080}
+                  sizes="(max-width: 48rem) 100vw, 46rem"
+                />
+              </figure>
+            )}
           </section>
           <section className={styles.section} data-reveal>
             <p className="eyebrow">{text.admin}</p>
             <p className="project-copy">{text.cantinhoAdmin}</p>
+            {desktopMedia.slice(4).map(
+              (media) =>
+                media.src && (
+                  <figure key={media.label} className={styles.mediaImage}>
+                    <Image
+                      src={media.src}
+                      alt={media.alt}
+                      width={1920}
+                      height={1080}
+                      sizes="(max-width: 48rem) 100vw, 46rem"
+                    />
+                  </figure>
+                ),
+            )}
           </section>
           <section className={styles.section} data-reveal>
             <p className="eyebrow">{text.responsive}</p>
             <p className="project-copy">{text.cantinhoResponsive}</p>
+            <div className={styles.mobileGallery}>
+              {mobileMedia.map(
+                (media) =>
+                  media.src && (
+                    <figure key={media.label}>
+                      <Image
+                        src={media.src}
+                        alt={media.alt}
+                        width={500}
+                        height={900}
+                        sizes="(max-width: 48rem) 48vw, 11rem"
+                      />
+                    </figure>
+                  ),
+              )}
+            </div>
           </section>
         </>
       )}
@@ -196,7 +261,7 @@ export function ProjectCaseStudy({ slug }: { slug: string }) {
           ))}
         </div>
       </section>
-      {project.gallery.length > 0 && !isArenaX && (
+      {project.gallery.length > 0 && !isArenaX && !isCantinho && (
         <section className={styles.section} data-reveal>
           <p className="eyebrow">{text.media}</p>
           <div className={styles.gallery}>
