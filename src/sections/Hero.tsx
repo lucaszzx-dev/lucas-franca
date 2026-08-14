@@ -19,16 +19,15 @@ export function Hero() {
         </p>
         <div className={styles.heroGrid}>
           <div className={styles.heroTitle}>
-            <div className={styles.heroIdentity} data-reveal>
+            <div className={styles.heroPortrait} data-reveal>
               <Image
                 src="/images/lucas-franca.jpg"
                 alt={hero.photoLabel}
-                width={96}
-                height={96}
+                width={480}
+                height={640}
                 priority
-                sizes="4rem"
+                sizes="(max-width: 47.99rem) 10rem, 16rem"
               />
-              <span>{hero.availability}</span>
             </div>
             <h1 id="hero-title" data-text-reveal>
               {hero.name[0]}

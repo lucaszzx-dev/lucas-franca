@@ -198,6 +198,105 @@
   border-color: var(--color-accent-secondary);
   color: var(--color-accent-secondary-hover);
 }
+.servicesIntro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.72fr);
+  gap: var(--space-xl);
+  align-items: end;
+}
+.servicesIntro .copy {
+  margin-top: 0;
+}
+.serviceCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+.serviceCard {
+  display: flex;
+  min-height: 24rem;
+  flex-direction: column;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-subtle);
+}
+.serviceCard > span {
+  color: var(--color-accent);
+  font: var(--text-xs) var(--font-mono);
+}
+.serviceCard h3 {
+  margin-top: auto;
+  font-size: var(--text-2xl);
+  letter-spacing: var(--tracking-tight);
+}
+.serviceCard p {
+  margin-top: var(--space-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+.serviceCard ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-top: var(--space-md);
+  list-style: none;
+}
+.serviceCard li {
+  padding: var(--space-3xs) var(--space-xs);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+.contactPanel {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  padding: clamp(2rem, 6vw, 5rem);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-raised);
+}
+.contactPanel h2 {
+  max-width: 48rem;
+  margin-top: var(--space-xs);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 0.92;
+  letter-spacing: var(--tracking-tight);
+}
+.contactPanel p:last-child {
+  max-width: 38rem;
+  margin-top: var(--space-md);
+  color: var(--color-text-secondary);
+}
+.contactPanel a {
+  flex: 0 0 auto;
+}
+.footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+.footerMeta {
+  max-width: 34rem;
+}
+.footerLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+.footerLinks a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+.footerLinks a:hover {
+  color: var(--color-accent);
+}
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
     transform: translateY(-0.35rem);
@@ -207,19 +306,23 @@
 }
 
 /* Editorial second-pass compositions */
-.heroIdentity {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  color: var(--color-text-muted);
-  font-size: var(--text-sm);
-}
-.heroIdentity img {
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  object-fit: cover;
+.heroPortrait {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: clamp(8rem, 16vw, 15rem);
+  aspect-ratio: 0.76;
+  overflow: hidden;
   border: 1px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-raised);
+}
+.heroPortrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+  filter: saturate(0.78) contrast(1.08);
 }
 .heroKicker {
   color: var(--color-accent-secondary);
@@ -314,7 +417,7 @@
 .aboutPhoto {
   position: relative;
   overflow: hidden;
-  min-height: 34rem;
+  min-height: 40rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border-strong);
 }
@@ -360,6 +463,20 @@
   font-size: var(--text-xs);
 }
 @media (max-width: 47.99rem) {
+  .servicesIntro,
+  .serviceCards {
+    grid-template-columns: 1fr;
+  }
+  .serviceCard {
+    min-height: 18rem;
+  }
+  .contactPanel {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .footer .container {
+    flex-direction: column;
+  }
   .workOverlay {
     transform: translateY(0);
   }
@@ -394,6 +511,11 @@
   gap: var(--space-xl);
   align-items: end;
   margin-top: var(--space-md);
+}
+.heroTitle {
+  position: relative;
+  min-height: clamp(12rem, 20vw, 17rem);
+  padding-right: clamp(7rem, 16vw, 16rem);
 }
 .hero h1 {
   font-size: var(--text-display);
@@ -459,6 +581,13 @@
   }
   .hero {
     padding-top: var(--space-2xl);
+  }
+  .heroTitle {
+    min-height: 12rem;
+    padding-right: 8.5rem;
+  }
+  .heroPortrait {
+    width: 8rem;
   }
   .photo {
     min-height: 18rem;

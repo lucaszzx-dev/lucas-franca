@@ -10,6 +10,7 @@ export const siteContent = {
       { label: "Trabalhos", href: "#trabalhos" },
       { label: "Sobre", href: "#sobre" },
       { label: "Stack", href: "#stack" },
+      { label: "Serviços", href: "#servicos" },
       { label: "Contato", href: "#contato" },
     ],
     header: {
@@ -68,10 +69,37 @@ export const siteContent = {
         { label: "Próximo", value: "Full stack" },
       ],
     },
+    services: {
+      eyebrow: "Serviços",
+      title: "O que eu posso construir hoje.",
+      copy: "Foco em produtos web bem estruturados, com escopo claro e espaço para evoluir junto com a base técnica.",
+      items: [
+        {
+          title: "Desenvolvimento front-end",
+          description:
+            "Interfaces em React e Next.js, responsivas, acessíveis e com atenção à experiência de uso e performance.",
+          tags: ["React", "Next.js", "Responsividade", "UX"],
+        },
+        {
+          title: "Full stack em evolução",
+          description:
+            "Aplicações completas com Node.js e PostgreSQL, aplicando a base atual de forma responsável enquanto sigo aprofundando o back-end.",
+          tags: ["Node.js", "PostgreSQL", "APIs", "Drizzle ORM"],
+        },
+        {
+          title: "Estudo aplicado e projetos pessoais",
+          description:
+            "Projetos autorais para praticar produto, arquitetura e execução. Os cases deste portfólio representam estudo e prática, não trabalhos para clientes.",
+          tags: ["Produto", "Prática", "Estudo", "Open source"],
+        },
+      ],
+    },
     contact: {
       eyebrow: "Contato",
       title: "Tem uma ideia, projeto ou oportunidade? Vamos conversar.",
       copy: "lucaszzx.dev@gmail.com · GitHub · LinkedIn · Currículo em breve",
+      action: "Conversar por e-mail",
+      links: { email: "E-mail", github: "GitHub", linkedin: "LinkedIn" },
     },
     footer: "Front-end Developer · Taboão da Serra, Brasil",
   },
@@ -81,6 +109,7 @@ export const siteContent = {
       { label: "Work", href: "#trabalhos" },
       { label: "About", href: "#sobre" },
       { label: "Stack", href: "#stack" },
+      { label: "Services", href: "#servicos" },
       { label: "Contact", href: "#contato" },
     ],
     header: {
@@ -142,10 +171,37 @@ export const siteContent = {
         { label: "Next", value: "Full stack" },
       ],
     },
+    services: {
+      eyebrow: "Services",
+      title: "What I can build today.",
+      copy: "A focus on well-structured web products, with clear scope and room to grow alongside my technical foundation.",
+      items: [
+        {
+          title: "Front-end development",
+          description:
+            "Responsive, accessible React and Next.js interfaces with attention to user experience and performance.",
+          tags: ["React", "Next.js", "Responsive", "UX"],
+        },
+        {
+          title: "Full-stack in progress",
+          description:
+            "Complete applications with Node.js and PostgreSQL, applying my current foundation responsibly while I keep strengthening back-end skills.",
+          tags: ["Node.js", "PostgreSQL", "APIs", "Drizzle ORM"],
+        },
+        {
+          title: "Applied learning and personal projects",
+          description:
+            "Independent projects for practicing product, architecture and execution. The case studies in this portfolio represent study and practice, not client work.",
+          tags: ["Product", "Practice", "Learning", "Open source"],
+        },
+      ],
+    },
     contact: {
       eyebrow: "Contact",
       title: "Have an idea, project or opportunity? Let's talk.",
       copy: "lucaszzx.dev@gmail.com · GitHub · LinkedIn · Résumé coming soon",
+      action: "Start an email conversation",
+      links: { email: "Email", github: "GitHub", linkedin: "LinkedIn" },
     },
     footer: "Front-end Developer · Taboão da Serra, Brazil",
   },

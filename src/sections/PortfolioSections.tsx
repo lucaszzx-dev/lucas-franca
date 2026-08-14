@@ -12,7 +12,7 @@ export function PortfolioSections() {
   const { content, locale } = useLocale();
   const ref = useRef<HTMLDivElement>(null);
   useMotion(ref);
-  const { works, about, stack, experience, contact, footer } = content;
+  const { works, about, stack, experience, services, contact, footer } = content;
   const projects = getProjects(locale);
   const featuredProjects = projects.filter((project) => project.featured);
   const secondaryProjects = projects.filter((project) => !project.featured);
@@ -153,38 +153,72 @@ export function PortfolioSections() {
           </div>
         </div>
       </section>
+      <section id="servicos" className={styles.section}>
+        <div className="container">
+          <div className={styles.servicesIntro}>
+            <div>
+              <p className={styles.eyebrow} data-reveal>
+                {services.eyebrow}
+              </p>
+              <h2 data-text-reveal>{services.title}</h2>
+            </div>
+            <p className={styles.copy} data-reveal>
+              {services.copy}
+            </p>
+          </div>
+          <div className={styles.serviceCards}>
+            {services.items.map((service, index) => (
+              <article key={service.title} className={styles.serviceCard} data-reveal>
+                <span>0{index + 1}</span>
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+                <ul aria-label={service.title}>
+                  {service.tags.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
       <section id="contato" className={styles.section}>
         <div className="container">
-          <p className={styles.eyebrow} data-reveal>
-            {contact.eyebrow}
-          </p>
-          <h2 data-text-reveal>{contact.title}</h2>
-          <p className={styles.copy} data-reveal>
-            {contact.copy}
-          </p>
-          <div className={styles.contactLinks} data-reveal>
-            <a href="mailto:lucaszzx.dev@gmail.com">Email ↗</a>
-            <a
-              href="https://github.com/lucaszzx-dev"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub ↗
-            </a>
-            <a
-              href="https://www.linkedin.com/in/lucas-fran%C3%A7a-171140429/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn ↗
+          <div className={styles.contactPanel} data-reveal>
+            <div>
+              <p className={styles.eyebrow}>{contact.eyebrow}</p>
+              <h2 data-text-reveal>{contact.title}</h2>
+              <p>{contact.copy}</p>
+            </div>
+            <a className="button button--primary" href="mailto:lucaszzx.dev@gmail.com">
+              {contact.action} ↗
             </a>
           </div>
         </div>
       </section>
       <footer className={styles.footer}>
         <div className="container">
-          <span className={styles.footerMark}>LF</span> © {new Date().getFullYear()}{" "}
-          Lucas França — {footer}
+          <div className={styles.footerMeta}>
+            <span className={styles.footerMark}>LF</span> © {new Date().getFullYear()}{" "}
+            Lucas França — {footer}
+          </div>
+          <div className={styles.footerLinks}>
+            <a href="mailto:lucaszzx.dev@gmail.com">{contact.links.email}</a>
+            <a
+              href="https://github.com/lucaszzx-dev"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {contact.links.github}
+            </a>
+            <a
+              href="https://www.linkedin.com/in/lucas-fran%C3%A7a-171140429/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {contact.links.linkedin}
+            </a>
+          </div>
         </div>
       </footer>
     </div>
