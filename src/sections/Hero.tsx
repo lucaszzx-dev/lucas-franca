@@ -7,7 +7,7 @@ import { useLocale } from "@/components/LocaleProvider";
 import styles from "./sections.module.css";
 
 export function Hero() {
-  const { content } = useLocale();
+  const { content, locale } = useLocale();
   const ref = useRef<HTMLElement>(null);
   useMotion(ref, { hero: true });
   const { hero } = content;
@@ -16,16 +16,21 @@ export function Hero() {
       <div className="container">
         <div className={styles.heroGrid}>
           <aside className={styles.heroIdentity} data-hero-intro>
-            <div className={styles.heroPortrait}>
+            <a
+              className={styles.heroPortrait}
+              href="#sobre"
+              aria-label={
+                locale === "pt-BR" ? "Ir para a seção Sobre" : "Go to the About section"
+              }
+            >
               <Image
                 src="/images/lucas-franca.jpg"
                 alt={hero.photoLabel}
-                width={480}
-                height={640}
-                priority
+                fill
+                preload
                 sizes="56px"
               />
-            </div>
+            </a>
             <p>
               <span>{hero.introduction[0]}</span>
               <strong>{hero.introduction[1]}</strong>
