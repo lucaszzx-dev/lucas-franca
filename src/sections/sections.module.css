@@ -117,13 +117,13 @@
   }
 }
 .worksTrack {
-  --works-card-size: clamp(23rem, 25vw, 27rem);
-  --works-card-overlap: clamp(0.5rem, 1vw, 1.25rem);
-  --works-edge-space: clamp(3rem, 4vw, 5rem);
+  --works-card-size: clamp(22rem, 23vw, 24rem);
+  --works-card-overlap: clamp(1.25rem, 1.45vw, 1.75rem);
+  --works-edge-space: clamp(6rem, 7.3vw, 9.375rem);
 
   display: flex;
   align-items: flex-start;
-  gap: 0;
+  gap: 1.25rem;
   overflow-x: auto;
   padding: var(--space-lg) 0 var(--space-xl);
   scroll-padding-inline: var(--works-edge-space);
@@ -145,7 +145,7 @@
   margin-inline: calc(var(--works-card-overlap) * -1);
   scroll-snap-align: center;
   scroll-snap-stop: always;
-  transform: scale(0.86);
+  transform: scale(0.84);
   transform-origin: center top;
   transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -159,7 +159,8 @@
   min-height: unset;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in srgb, var(--color-text-primary) 20%, transparent);
+  border-radius: var(--radius-md);
   background: var(--color-surface-subtle);
   cursor: pointer;
   transition: box-shadow 450ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -234,17 +235,14 @@
 }
 .workCardFocused .workLink,
 .workCard:focus-within .workLink {
-  box-shadow:
-    0 0.75rem 2rem rgb(0 0 0 / 22%),
-    0 2.5rem 5.5rem 2.5rem var(--color-surface-base),
-    inset 0 0 0 1px color-mix(in srgb, var(--color-text-primary) 18%, transparent);
+  box-shadow: 0 2.5rem 5rem 4.375rem var(--color-surface-base);
 }
 @media (hover: hover) and (pointer: fine) {
   .workCard:hover {
     z-index: 4;
   }
   .workCard:not(.workCardFocused):hover {
-    transform: scale(0.86) translateY(1.4rem);
+    transform: scale(0.84) translateY(1.25rem);
   }
   .workCard:hover .workMeta {
     opacity: 1;
@@ -252,10 +250,7 @@
     transform: translateY(0);
   }
   .workCard:hover .workLink {
-    box-shadow:
-      0 0.75rem 2rem rgb(0 0 0 / 22%),
-      0 3rem 6.5rem 3.25rem var(--color-surface-base),
-      inset 0 0 0 1px color-mix(in srgb, var(--color-text-primary) 18%, transparent);
+    box-shadow: 0 2.5rem 5rem 5rem var(--color-surface-base);
   }
   .workCard:not(.workCardFocused):hover .projectCover {
     filter: brightness(0.95);
@@ -301,6 +296,7 @@
     --works-card-overlap: 0rem;
     --works-edge-space: var(--space-xs);
 
+    gap: 0;
     padding: var(--space-lg) 0 var(--space-xl);
   }
   .workCard {
