@@ -491,6 +491,7 @@ export const projects: LocalizedProjects = {
       role: "Desenvolvimento full stack",
       shortDescription:
         "Plataforma full stack de delivery para açaí, com catálogo, montagem de pedidos, checkout e área administrativa.",
+      cardSummary: "Delivery de açaí com catálogo, pedidos e gestão.",
       description:
         "Plataforma digital de delivery desenvolvida para transformar o catálogo e o processo de pedidos do Cantinho do Açaí em uma experiência online completa.",
       technologies: [
@@ -524,6 +525,7 @@ export const projects: LocalizedProjects = {
       role: "Desenvolvimento full stack",
       shortDescription:
         "Plataforma full stack para criar, administrar e acompanhar campeonatos amadores.",
+      cardSummary: "Campeonatos amadores organizados em uma só plataforma.",
       description:
         "ArenaX é uma plataforma full stack criada para organizar, administrar e acompanhar campeonatos amadores. A aplicação reúne criação de competições, clubes, participantes, confrontos, calendário, chaveamento, classificação e acompanhamento público.",
       technologies: [
@@ -583,6 +585,7 @@ export const projects: LocalizedProjects = {
       role: "Desenvolvimento full stack",
       shortDescription:
         "Plataforma de agenda, orçamentos e gestão para profissionais autônomos.",
+      cardSummary: "Agenda e gestão para profissionais autônomos.",
       description:
         "Plataforma voltada à agenda, aos orçamentos e à gestão de profissionais autônomos.",
       technologies: ["React", "JavaScript", "PostgreSQL", "Supabase", "Vite", "Vitest"],
@@ -634,6 +637,7 @@ export const projects: LocalizedProjects = {
       role: "Desenvolvimento front-end",
       shortDescription:
         "Aplicação para organizar treinos e acompanhar evolução física.",
+      cardSummary: "Treinos e evolução física em um painel simples.",
       description: "Aplicação para organizar treinos e acompanhar a evolução física.",
       technologies: ["React", "JavaScript", "Firebase", "Recharts", "Vite"],
       repositoryUrl: "https://github.com/lucaszzx-dev/gym-tracker",
@@ -677,6 +681,7 @@ export const projects: LocalizedProjects = {
       role: "Full-stack development",
       shortDescription:
         "Full-stack açaí delivery platform with catalog, order customization, checkout and an admin area.",
+      cardSummary: "Açaí delivery with catalog, orders and management.",
       description:
         "A digital delivery platform built to turn Cantinho do Açaí's catalog and ordering process into a complete online experience.",
       technologies: [
@@ -710,6 +715,7 @@ export const projects: LocalizedProjects = {
       role: "Full-stack development",
       shortDescription:
         "Full-stack platform to create, manage and track amateur championships.",
+      cardSummary: "Amateur championships managed in one platform.",
       description:
         "ArenaX is a full-stack platform built to organize, manage and follow amateur competitions. It brings together competition creation, clubs, participants, matches, scheduling, brackets, standings and public tracking.",
       technologies: [
@@ -769,6 +775,7 @@ export const projects: LocalizedProjects = {
       role: "Full-stack development",
       shortDescription:
         "Scheduling, quoting and management platform for self-employed professionals.",
+      cardSummary: "Scheduling and management for self-employed professionals.",
       description:
         "A platform for scheduling, quoting and managing self-employed professionals.",
       technologies: ["React", "JavaScript", "PostgreSQL", "Supabase", "Vite", "Vitest"],
@@ -819,6 +826,7 @@ export const projects: LocalizedProjects = {
       status: "Complete case study",
       role: "Front-end development",
       shortDescription: "Application to organize workouts and track physical progress.",
+      cardSummary: "Workouts and physical progress in one simple dashboard.",
       description:
         "An application for organizing workouts and tracking physical progress.",
       technologies: ["React", "JavaScript", "Firebase", "Recharts", "Vite"],

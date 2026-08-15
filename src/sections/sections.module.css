@@ -78,10 +78,10 @@
     color var(--duration-fast) var(--ease-standard);
 }
 .worksControls button:nth-of-type(1) {
-  left: clamp(6.25rem, 8vw, 7.5rem);
+  left: clamp(3.5rem, 4vw, 4rem);
 }
 .worksControls button:nth-of-type(2) {
-  right: clamp(0.75rem, 2vw, 2rem);
+  right: clamp(3.5rem, 4vw, 4rem);
 }
 .worksControls > span {
   position: absolute;
@@ -159,6 +159,7 @@
   min-height: unset;
   aspect-ratio: 16 / 10;
   border-radius: var(--radius-lg);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.32);
   cursor: pointer;
 }
 .workLink .projectCover {
@@ -172,7 +173,7 @@
 }
 .workMeta {
   display: none;
-  grid-template-columns: 3rem minmax(0, 1fr) auto;
+  grid-template-columns: 3rem minmax(0, 1fr);
   gap: var(--space-md);
   align-items: start;
   padding: var(--space-md) var(--space-xs) 0;
@@ -211,7 +212,8 @@
     color var(--duration-fast) var(--ease-standard);
 }
 .workMeta > a {
-  padding-top: var(--space-sm);
+  grid-column: 2;
+  padding-top: 0;
   color: var(--color-accent);
   font-size: var(--text-sm);
   white-space: nowrap;

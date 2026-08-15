@@ -22,6 +22,7 @@ export interface Project {
   slug: string;
   title: string;
   shortDescription: string;
+  cardSummary: string;
   description: string;
   role: string;
   status: string;

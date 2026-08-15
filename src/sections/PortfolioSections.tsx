@@ -116,7 +116,7 @@ export function PortfolioSections() {
                     <div>
                       <p className={styles.notice}>{project.status}</p>
                       <h3>{project.title}</h3>
-                      <p>{project.shortDescription}</p>
+                      <p>{project.cardSummary}</p>
                       <ul className={styles.worksTags} aria-label={project.title}>
                         {project.technologies.slice(0, 4).map((technology) => (
                           <li key={technology}>{technology}</li>
