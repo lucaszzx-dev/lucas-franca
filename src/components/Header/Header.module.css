@@ -7,7 +7,7 @@
   border-bottom: var(--border-width) var(--border-style) var(--color-border-subtle);
 }
 .inner {
-  min-height: 4.75rem;
+  min-height: 5.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,7 +15,7 @@
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--tracking-tight);
 }
@@ -32,19 +32,43 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: clamp(0.8rem, 1.8vw, 1.75rem);
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
 }
-.nav a:hover {
+.nav a {
+  position: relative;
+  padding-block: var(--space-xs);
+}
+.nav a::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  content: "";
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+.nav a:hover,
+.nav a:focus-visible,
+.navActive {
   color: var(--color-accent);
+}
+.nav a:hover::after,
+.nav a:focus-visible::after,
+.navActive::after {
+  transform: scaleX(1);
 }
 .locale {
   display: flex;
   gap: var(--space-3xs);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-pill);
-  padding: var(--space-3xs);
+  padding: 0.2rem;
+  background: var(--color-surface-subtle);
 }
 .locale button,
 .menu {
@@ -54,7 +78,10 @@
   cursor: pointer;
 }
 .locale .active {
-  color: var(--color-accent);
+  padding: 0.25rem 0.45rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
 }
 .menu {
   display: none;

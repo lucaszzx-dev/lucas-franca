@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useMotion } from "@/animations/useMotion";
 import { useLocale } from "@/components/LocaleProvider";
 import { getProjects } from "@/content/projects";
@@ -11,11 +11,21 @@ import styles from "./sections.module.css";
 export function PortfolioSections() {
   const { content, locale } = useLocale();
   const ref = useRef<HTMLDivElement>(null);
+  const worksTrack = useRef<HTMLDivElement>(null);
+  const [workPage, setWorkPage] = useState(0);
   useMotion(ref);
   const { works, about, stack, experience, services, contact, footer } = content;
   const projects = getProjects(locale);
-  const featuredProjects = projects.filter((project) => project.featured);
-  const secondaryProjects = projects.filter((project) => !project.featured);
+  const allProjects = projects;
+  const moveWorks = (direction: 1 | -1) => {
+    const next = Math.max(0, Math.min(allProjects.length - 1, workPage + direction));
+    setWorkPage(next);
+    worksTrack.current?.children[next]?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start",
+    });
+  };
   return (
     <div ref={ref}>
       <section id="trabalhos" className={styles.section}>
@@ -24,49 +34,60 @@ export function PortfolioSections() {
             {works.eyebrow}
           </p>
           <h2 data-text-reveal>{works.title}</h2>
-          <div className={styles.cards}>
-            {featuredProjects.map((project, index) => (
-              <article key={project.slug} className={styles.card} data-reveal>
-                <Link className={styles.workLink} href={`/projetos/${project.slug}`}>
-                  {project.gallery[0]?.src && (
-                    <Image
-                      className={styles.projectCover}
-                      src={project.gallery[0].src}
-                      alt={project.gallery[0].alt}
-                      width={1920}
-                      height={1080}
-                      sizes="(max-width: 47.99rem) 100vw, 70vw"
-                    />
-                  )}
-                  <span className={styles.workNumber}>0{index + 1}</span>
-                  <div className={styles.workOverlay}>
-                    <p className={styles.notice}>{project.status}</p>
-                    <h3>{project.title}</h3>
-                    <p>{project.shortDescription}</p>
-                    <small>{project.technologies.slice(0, 4).join(" · ")}</small>
-                    <span>{works.action} ↗</span>
-                  </div>
-                </Link>
-              </article>
-            ))}
-          </div>
-          <div className={styles.secondaryWorks} data-reveal>
-            <p className={styles.notice}>{works.secondaryLabel}</p>
-            {secondaryProjects.map((project) => (
-              <Link
-                key={project.slug}
-                className={styles.secondaryWork}
-                href={`/projetos/${project.slug}`}
+          <div className={styles.worksControls} data-reveal>
+            <span>
+              {String(workPage + 1).padStart(2, "0")} /{" "}
+              {String(allProjects.length).padStart(2, "0")}
+            </span>
+            <div>
+              <button
+                type="button"
+                onClick={() => moveWorks(-1)}
+                disabled={workPage === 0}
+                aria-label="Previous project"
               >
-                <span className={styles.workNumber}>04</span>
-                <div>
-                  <h3>{project.title}</h3>
-                  <p>{project.shortDescription}</p>
-                  <small>{project.technologies.join(" · ")}</small>
-                </div>
-                <span aria-hidden="true">↗</span>
-              </Link>
-            ))}
+                ←
+              </button>
+              <button
+                type="button"
+                onClick={() => moveWorks(1)}
+                disabled={workPage === allProjects.length - 1}
+                aria-label="Next project"
+              >
+                →
+              </button>
+            </div>
+          </div>
+          <div className={styles.worksViewport} data-reveal>
+            <div className={styles.worksTrack} ref={worksTrack}>
+              {allProjects.map((project, index) => (
+                <article key={project.slug} className={styles.workCard}>
+                  <Link className={styles.workLink} href={`/projetos/${project.slug}`}>
+                    {project.gallery[0]?.src && (
+                      <Image
+                        className={styles.projectCover}
+                        src={project.gallery[0].src}
+                        alt={project.gallery[0].alt}
+                        width={1920}
+                        height={1080}
+                        sizes="(max-width: 47.99rem) 100vw, 70vw"
+                      />
+                    )}
+                  </Link>
+                  <div className={styles.workMeta}>
+                    <span className={styles.workNumber}>
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <p className={styles.notice}>{project.status}</p>
+                      <h3>{project.title}</h3>
+                      <p>{project.shortDescription}</p>
+                    </div>
+                    <Link href={`/projetos/${project.slug}`}>{works.action} ↗</Link>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -119,7 +140,7 @@ export function PortfolioSections() {
                 <p className={styles.stackLabel}>{group.label}</p>
                 <div className={styles.marquee}>
                   <div className={styles.marqueeTrack}>
-                    {group.items.concat(group.items).map((item, index) => (
+                    {group.items.concat(group.items, group.items).map((item, index) => (
                       <span
                         key={`${item}-${index}`}
                         aria-hidden={index >= group.items.length}
@@ -134,15 +155,15 @@ export function PortfolioSections() {
           </div>
         </div>
       </section>
-      <section id="experiencia" className={styles.section}>
+      <section
+        id="experiencia"
+        className={`${styles.section} ${styles.journeySection}`}
+      >
         <div className="container">
           <p className={styles.eyebrow} data-reveal>
             {experience.eyebrow}
           </p>
           <h2 data-text-reveal>{experience.title}</h2>
-          <p className={styles.copy} data-reveal>
-            {experience.copy}
-          </p>
           <div className={styles.journey} data-reveal>
             {experience.milestones.map((milestone) => (
               <span key={milestone.label}>

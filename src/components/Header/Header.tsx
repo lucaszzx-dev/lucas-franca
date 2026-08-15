@@ -1,12 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocale } from "@/components/LocaleProvider";
 import styles from "./Header.module.css";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#inicio");
   const { locale, content, setLocale } = useLocale();
+  useEffect(() => {
+    const sections = content.nav
+      .map(({ href }) => document.querySelector(href))
+      .filter((section): section is HTMLElement => section instanceof HTMLElement);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting);
+        if (visible[0]) setActiveSection(`#${visible[0].target.id}`);
+      },
+      { rootMargin: "-28% 0px -62% 0px" },
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [content.nav]);
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
@@ -32,7 +47,12 @@ export function Header() {
           aria-label={content.header.navigation}
         >
           {content.nav.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
+            <a
+              key={item.href}
+              href={item.href}
+              className={activeSection === item.href ? styles.navActive : ""}
+              onClick={() => setMenuOpen(false)}
+            >
               {item.label}
             </a>
           ))}

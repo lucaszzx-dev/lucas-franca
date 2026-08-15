@@ -52,8 +52,8 @@ export function Hero() {
           </div>
         </div>
         <div className={styles.heroRule} aria-hidden="true">
-          <span>{hero.signature[0]}</span>
-          <strong>{hero.signature[1]}</strong>
+          <span>{hero.signature.join(" · ")}</span>
+          <strong>{hero.role}</strong>
           <i>LF / 2026</i>
         </div>
       </div>
