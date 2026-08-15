@@ -49,15 +49,15 @@
 .worksControls {
   position: absolute;
   inset: 0;
-  z-index: 2;
-  display: contents;
+  z-index: 3;
+  pointer-events: none;
   color: var(--color-text-muted);
   font: var(--text-xs) var(--font-mono);
 }
 .worksControls button {
   position: absolute;
-  top: 50%;
-  z-index: 3;
+  top: calc(var(--space-3xl) + clamp(6rem, 9vw, 9rem));
+  z-index: 1;
   width: 3.25rem;
   min-height: 3.25rem;
   border: 1px solid color-mix(in srgb, var(--color-text-primary) 40%, transparent);
@@ -66,6 +66,7 @@
   background: color-mix(in srgb, var(--color-surface-base) 76%, transparent);
   backdrop-filter: blur(8px);
   cursor: pointer;
+  pointer-events: auto;
   transform: translateY(-50%);
   transition:
     transform var(--duration-base) var(--ease-emphasized),
@@ -74,16 +75,16 @@
     color var(--duration-fast) var(--ease-standard);
 }
 .worksControls button:nth-of-type(1) {
-  left: clamp(4rem, 6vw, 6rem);
+  left: clamp(6.25rem, 8vw, 7.5rem);
 }
 .worksControls button:nth-of-type(2) {
-  right: var(--space-md);
+  right: clamp(0.75rem, 2vw, 2rem);
 }
 .worksControls > span {
   position: absolute;
-  top: var(--space-md);
-  left: clamp(4.25rem, 7vw, 6.5rem);
-  z-index: 3;
+  top: var(--space-3xl);
+  left: clamp(6.25rem, 8vw, 7.5rem);
+  z-index: 1;
   padding: 0.35rem 0.5rem;
   background: color-mix(in srgb, var(--color-surface-base) 78%, transparent);
 }
@@ -99,12 +100,13 @@
 .worksViewport {
   position: relative;
   overflow: hidden;
+  margin-inline: clamp(6.5rem, 8.25vw, 8rem);
 }
 .worksTrack {
   display: flex;
   gap: var(--space-lg);
   overflow-x: auto;
-  padding-bottom: var(--space-sm);
+  padding: var(--space-3xs) 0 var(--space-sm);
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
 }
@@ -112,7 +114,7 @@
   display: none;
 }
 .workCard {
-  flex: 0 0 min(80vw, 72rem);
+  flex: 0 0 clamp(17rem, 28vw, 25rem);
   scroll-snap-align: start;
 }
 @media (max-width: 47.99rem) {
@@ -126,6 +128,7 @@
     transform: none;
   }
   .worksControls button {
+    top: calc(var(--space-2xl) + 6rem);
     width: 2.75rem;
     min-height: 2.75rem;
   }
@@ -136,8 +139,14 @@
     right: var(--space-sm);
   }
   .worksControls > span {
-    top: var(--space-sm);
+    top: var(--space-lg);
     left: 4rem;
+  }
+  .worksTrack {
+    padding: var(--space-3xs) var(--space-md) var(--space-sm) 0;
+  }
+  .worksViewport {
+    margin-inline: 0;
   }
   .workCard {
     flex-basis: 88vw;
@@ -159,11 +168,14 @@
     filter var(--duration-base) var(--ease-standard);
 }
 .workMeta {
-  display: grid;
+  display: none;
   grid-template-columns: 3rem minmax(0, 1fr) auto;
   gap: var(--space-md);
   align-items: start;
   padding: var(--space-md) var(--space-xs) 0;
+}
+.workMetaFocused {
+  display: grid;
 }
 .workMeta .workNumber {
   position: static;

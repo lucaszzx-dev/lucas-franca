@@ -26,6 +26,30 @@ export function PortfolioSections() {
       inline: "start",
     });
   };
+  const syncFocusedWork = () => {
+    const track = worksTrack.current;
+
+    if (!track) {
+      return;
+    }
+
+    const cards = Array.from(track.children) as HTMLElement[];
+    let closestIndex = 0;
+    let closestDistance = Number.POSITIVE_INFINITY;
+
+    cards.forEach((card, index) => {
+      const distance = Math.abs(card.offsetLeft - track.scrollLeft);
+
+      if (distance < closestDistance) {
+        closestIndex = index;
+        closestDistance = distance;
+      }
+    });
+
+    setWorkPage((currentPage) =>
+      currentPage === closestIndex ? currentPage : closestIndex,
+    );
+  };
   return (
     <div ref={ref}>
       <section id="trabalhos" className={`${styles.section} ${styles.worksSection}`}>
@@ -33,33 +57,42 @@ export function PortfolioSections() {
           <span aria-hidden="true">{works.eyebrow}</span>
           <span className={styles.srOnly}>{works.title}</span>
         </h2>
+        <div className={styles.worksControls} aria-label={works.title} role="group">
+          <span aria-live="polite">
+            {String(workPage + 1).padStart(2, "0")} /{" "}
+            {String(allProjects.length).padStart(2, "0")}
+          </span>
+          <button
+            type="button"
+            onClick={() => moveWorks(-1)}
+            disabled={workPage === 0}
+            aria-label="Previous project"
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            onClick={() => moveWorks(1)}
+            disabled={workPage === allProjects.length - 1}
+            aria-label="Next project"
+          >
+            →
+          </button>
+        </div>
         <div className="container">
           <div className={styles.worksViewport} data-reveal>
-            <div className={styles.worksControls}>
-              <span>
-                {String(workPage + 1).padStart(2, "0")} /{" "}
-                {String(allProjects.length).padStart(2, "0")}
-              </span>
-              <button
-                type="button"
-                onClick={() => moveWorks(-1)}
-                disabled={workPage === 0}
-                aria-label="Previous project"
-              >
-                ←
-              </button>
-              <button
-                type="button"
-                onClick={() => moveWorks(1)}
-                disabled={workPage === allProjects.length - 1}
-                aria-label="Next project"
-              >
-                →
-              </button>
-            </div>
-            <div className={styles.worksTrack} ref={worksTrack}>
+            <div
+              className={styles.worksTrack}
+              ref={worksTrack}
+              onScroll={syncFocusedWork}
+            >
               {allProjects.map((project, index) => (
-                <article key={project.slug} className={styles.workCard}>
+                <article
+                  key={project.slug}
+                  className={`${styles.workCard} ${
+                    index === workPage ? styles.workCardFocused : ""
+                  }`}
+                >
                   <Link className={styles.workLink} href={`/projetos/${project.slug}`}>
                     {project.gallery[0]?.src && (
                       <Image
@@ -68,11 +101,15 @@ export function PortfolioSections() {
                         alt={project.gallery[0].alt}
                         width={1920}
                         height={1080}
-                        sizes="(max-width: 47.99rem) 100vw, 70vw"
+                        sizes="(max-width: 47.99rem) 88vw, (max-width: 80rem) 32vw, 28vw"
                       />
                     )}
                   </Link>
-                  <div className={styles.workMeta}>
+                  <div
+                    className={`${styles.workMeta} ${
+                      index === workPage ? styles.workMetaFocused : ""
+                    }`}
+                  >
                     <span className={styles.workNumber}>
                       {String(index + 1).padStart(2, "0")}
                     </span>
