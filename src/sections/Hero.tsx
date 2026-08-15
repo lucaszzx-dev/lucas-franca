@@ -14,47 +14,41 @@ export function Hero() {
   return (
     <section ref={ref} className={styles.hero} aria-labelledby="hero-title">
       <div className="container">
-        <p className={styles.eyebrow} data-reveal>
-          {hero.availability}
-        </p>
         <div className={styles.heroGrid}>
-          <div className={styles.heroTitle}>
-            <div className={styles.heroPortrait} data-reveal>
+          <aside className={styles.heroIdentity} data-hero-intro>
+            <div className={styles.heroPortrait}>
               <Image
                 src="/images/lucas-franca.jpg"
                 alt={hero.photoLabel}
                 width={480}
                 height={640}
                 priority
-                sizes="(max-width: 47.99rem) 10rem, 16rem"
+                sizes="56px"
               />
             </div>
-            <h1 id="hero-title" data-text-reveal>
-              {hero.name[0]}
-              <br />
-              {hero.name[1]}
-              <span>.</span>
-            </h1>
-            <p className={styles.role} data-reveal>
-              {hero.role}
+            <p>
+              <span>{hero.introduction[0]}</span>
+              <strong>{hero.introduction[1]}</strong>
+              <strong>{hero.introduction[2]}</strong>
             </p>
-          </div>
-          <div className={styles.intro} data-reveal>
-            <span className={styles.heroKicker}>
-              {hero.kicker[0]}
+          </aside>
+          <div className={styles.heroMain}>
+            <p className={styles.heroStatus} data-hero-intro>
+              {hero.availability}
+            </p>
+            <h1 id="hero-title" data-hero-headline>
+              Front-end
               <br />
-              {hero.kicker[1]}
-            </span>
-            <p>{hero.description}</p>
-            <a className="button button--primary" href="#trabalhos">
+              Developer<span>.</span>
+            </h1>
+            <p className={styles.heroDescription} data-hero-headline>
+              {hero.shortDescription}
+            </p>
+            <a className={styles.heroCta} href="#trabalhos" data-hero-cta>
               {hero.action}
+              <span aria-hidden="true">↗</span>
             </a>
           </div>
-        </div>
-        <div className={styles.heroRule} aria-hidden="true">
-          <span>{hero.signature.join(" · ")}</span>
-          <strong>{hero.role}</strong>
-          <i>LF / 2026</i>
         </div>
       </div>
     </section>

@@ -21,6 +21,8 @@ export const siteContent = {
     },
     hero: {
       availability: "Disponível para novas conexões, projetos e oportunidades",
+      introduction: ["Oi, sou", "Lucas", "França"],
+      shortDescription: "Criando interfaces e produtos digitais.",
       name: ["Lucas", "França"],
       role: "Front-end Developer",
       description:
@@ -120,6 +122,8 @@ export const siteContent = {
     },
     hero: {
       availability: "Open to new connections, projects and opportunities",
+      introduction: ["Hi, I'm", "Lucas", "França"],
+      shortDescription: "Building interfaces and digital products.",
       name: ["Lucas", "França"],
       role: "Front-end Developer",
       description:

@@ -24,17 +24,33 @@ export function useMotion(
       const duration = motionValue("--duration-slow", 0.5);
       const media = gsap.matchMedia();
       media.add("(prefers-reduced-motion: no-preference)", () => {
+        if (options.hero) {
+          const intro = gsap.utils.toArray<HTMLElement>("[data-hero-intro]", node);
+          const headline = gsap.utils.toArray<HTMLElement>(
+            "[data-hero-headline]",
+            node,
+          );
+          const cta = gsap.utils.toArray<HTMLElement>("[data-hero-cta]", node);
+          const timeline = gsap.timeline();
+          timeline
+            .from(intro, {
+              y: 14,
+              autoAlpha: 0,
+              duration,
+              ease: "power3.out",
+              stagger: 0.08,
+            })
+            .from(
+              headline,
+              { y: 26, autoAlpha: 0, duration, ease: "power3.out", stagger: 0.08 },
+              "-=0.2",
+            )
+            .from(cta, { y: 12, autoAlpha: 0, duration, ease: "power3.out" }, "-=0.18");
+          return;
+        }
         const titles = gsap.utils.toArray<HTMLElement>("[data-text-reveal]", node);
         const reveals = gsap.utils.toArray<HTMLElement>("[data-reveal]", node);
-        if (options.hero)
-          gsap.from(reveals, {
-            y: 20,
-            autoAlpha: 0,
-            duration,
-            ease: "power3.out",
-            stagger: 0.1,
-          });
-        else {
+        {
           gsap.from(reveals, {
             y: 20,
             autoAlpha: 0,
@@ -49,9 +65,7 @@ export function useMotion(
           autoAlpha: 0,
           duration,
           ease: "power3.out",
-          scrollTrigger: options.hero
-            ? undefined
-            : { trigger: node, start: "top 82%", once: true },
+          scrollTrigger: { trigger: node, start: "top 82%", once: true },
         });
       });
       return () => media.revert();

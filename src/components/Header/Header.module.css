@@ -2,12 +2,12 @@
   position: sticky;
   top: 0;
   z-index: var(--z-header);
-  background: color-mix(in srgb, var(--color-surface-base) 88%, transparent);
-  backdrop-filter: blur(14px);
-  border-bottom: var(--border-width) var(--border-style) var(--color-border-subtle);
+  background: var(--color-surface-base);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-border-subtle) 45%, transparent);
 }
 .inner {
-  min-height: 5.25rem;
+  min-height: 4.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,21 +19,24 @@
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--tracking-tight);
 }
+.brand span {
+  display: none;
+}
 .brand strong {
   display: grid;
   width: 2rem;
   aspect-ratio: 1;
   place-items: center;
-  border-radius: var(--radius-xs);
-  background: var(--color-accent);
-  color: var(--color-accent-contrast);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  color: var(--color-text-primary);
   font-size: var(--text-xs);
 }
 .nav {
   display: flex;
   align-items: center;
   gap: clamp(0.8rem, 1.8vw, 1.75rem);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   color: var(--color-text-secondary);
 }
 .nav a {
@@ -42,10 +45,11 @@
 }
 .nav a::after {
   position: absolute;
-  right: 0;
+  right: auto;
   bottom: 0;
   left: 0;
-  height: 2px;
+  width: 0.9rem;
+  height: 1px;
   content: "";
   background: var(--color-accent);
   transform: scaleX(0);
@@ -55,7 +59,7 @@
 .nav a:hover,
 .nav a:focus-visible,
 .navActive {
-  color: var(--color-accent);
+  color: var(--color-text-primary);
 }
 .nav a:hover::after,
 .nav a:focus-visible::after,
@@ -67,8 +71,7 @@
   gap: var(--space-3xs);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-pill);
-  padding: 0.2rem;
-  background: var(--color-surface-subtle);
+  padding: 0.1rem;
 }
 .locale button,
 .menu {
@@ -78,10 +81,10 @@
   cursor: pointer;
 }
 .locale .active {
-  padding: 0.25rem 0.45rem;
-  border-radius: var(--radius-pill);
-  background: var(--color-accent);
-  color: var(--color-accent-contrast);
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: 0.35em;
 }
 .menu {
   display: none;
@@ -97,7 +100,7 @@
     left: 0;
     right: 0;
     padding: var(--space-md) var(--page-gutter);
-    background: var(--color-surface-raised);
+    background: var(--color-surface-base);
     flex-direction: column;
     align-items: flex-start;
   }
