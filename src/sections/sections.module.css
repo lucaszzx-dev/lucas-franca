@@ -102,7 +102,10 @@
 }
 .worksViewport {
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
+  padding-block: var(--space-lg);
+  margin-block: calc(var(--space-lg) * -1);
   margin-inline: clamp(6.5rem, 8.25vw, 8rem);
 }
 .worksTrack {
@@ -122,6 +125,8 @@
   content: "";
 }
 .workCard {
+  position: relative;
+  z-index: 1;
   flex: 0 0 clamp(19rem, 30vw, 27rem);
   scroll-snap-align: start;
 }
@@ -164,11 +169,18 @@
   }
 }
 .workLink {
+  position: relative;
+  display: block;
   min-height: unset;
   aspect-ratio: 16 / 10;
+  overflow: hidden;
   border-radius: var(--radius-lg);
+  background: var(--color-surface-subtle);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.32);
   cursor: pointer;
+  transition:
+    transform var(--duration-base) var(--ease-emphasized),
+    box-shadow var(--duration-base) var(--ease-emphasized);
 }
 .workLink .projectCover {
   display: block;
@@ -178,6 +190,37 @@
   transition:
     transform var(--duration-slow) var(--ease-emphasized),
     filter var(--duration-base) var(--ease-standard);
+}
+.workOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-2xs);
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  color: var(--color-text-primary);
+  background: color-mix(in srgb, var(--color-surface-base) 88%, transparent);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-emphasized);
+}
+.workOverlayNumber {
+  color: var(--color-accent);
+  font: var(--text-xs) var(--font-mono);
+}
+.workOverlayTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-tight);
+}
+.workOverlaySummary {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+.workOverlayAction {
+  color: var(--color-accent);
+  font-size: var(--text-sm);
 }
 .workMeta {
   display: none;
@@ -227,9 +270,18 @@
   white-space: nowrap;
 }
 @media (hover: hover) and (pointer: fine) {
+  .workCard:hover {
+    z-index: 5;
+  }
+  .workCard:hover .workLink {
+    transform: scale(1.1);
+    box-shadow: 0 2.5rem 5rem rgba(0, 0, 0, 0.55);
+  }
   .workLink:hover .projectCover {
-    filter: brightness(1.08);
-    transform: scale(1.04);
+    filter: brightness(0.35);
+  }
+  .workLink:hover .workOverlay {
+    opacity: 1;
   }
   .worksTags li:hover {
     border-color: var(--color-accent);
@@ -581,60 +633,6 @@
   order: 3;
   font: var(--text-xs) var(--font-mono);
   color: var(--color-accent);
-}
-.workLink {
-  position: relative;
-  display: block;
-  min-height: 0;
-  overflow: hidden;
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-subtle);
-}
-.workNumber {
-  position: absolute;
-  top: var(--space-md);
-  left: var(--space-md);
-  z-index: 1;
-  font: var(--text-sm) var(--font-mono);
-  color: var(--color-text-primary);
-}
-.workOverlay {
-  position: absolute;
-  inset: auto 0 0;
-  display: grid;
-  gap: var(--space-2xs);
-  padding: var(--space-md);
-  color: var(--color-text-primary);
-  background: linear-gradient(transparent, rgba(7, 11, 22, 0.96));
-  transform: translateY(4.75rem);
-  transition: transform var(--duration-base) var(--ease-emphasized);
-}
-.workOverlay h3 {
-  font-size: var(--text-2xl);
-}
-.workOverlay p {
-  color: var(--color-text-secondary);
-}
-.workOverlay small {
-  color: var(--color-text-muted);
-}
-.workOverlay > span {
-  color: var(--color-accent);
-  margin-top: var(--space-xs);
-}
-.workLink .projectCover {
-  height: 100%;
-  object-fit: cover;
-  transition:
-    transform var(--duration-slow) var(--ease-emphasized),
-    filter var(--duration-base) var(--ease-standard);
-}
-@media (hover: hover) and (pointer: fine) {
-  .workLink:hover .projectCover {
-    transform: scale(1.04);
-    filter: brightness(1.08);
-  }
 }
 .aboutGrid {
   display: grid;

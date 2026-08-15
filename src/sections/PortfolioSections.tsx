@@ -104,6 +104,16 @@ export function PortfolioSections() {
                         sizes="(max-width: 47.99rem) 88vw, (max-width: 80rem) 32vw, 28vw"
                       />
                     )}
+                    <span className={styles.workOverlay}>
+                      <span className={styles.workOverlayNumber}>
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className={styles.workOverlayTitle}>{project.title}</span>
+                      <span className={styles.workOverlaySummary}>
+                        {project.cardSummary}
+                      </span>
+                      <span className={styles.workOverlayAction}>{works.action} ↗</span>
+                    </span>
                   </Link>
                   <div
                     className={`${styles.workMeta} ${
