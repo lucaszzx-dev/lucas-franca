@@ -106,9 +106,22 @@
   margin-block: calc(var(--space-lg) * -1);
   margin-inline: clamp(6.5rem, 8.25vw, 8rem);
 }
+@media (min-width: 64rem) {
+  .worksSection > :global(.container) {
+    width: calc(100% - (var(--page-gutter) * 2));
+    max-width: none;
+  }
+  .worksViewport {
+    margin-inline: clamp(2rem, 4vw, 4rem);
+  }
+}
 .worksTrack {
-  --works-card-size: clamp(23rem, 27vw, 27rem);
-  --works-edge-space: max(var(--space-lg), calc(50% - clamp(10rem, 11.5vw, 11.5rem)));
+  --works-card-size: clamp(21rem, 23vw, 24rem);
+  --works-card-overlap: clamp(2.5rem, 4vw, 4rem);
+  --works-edge-space: max(
+    var(--space-lg),
+    calc(50% - clamp(10rem, 11.5vw, 11.5rem) + var(--works-card-overlap))
+  );
 
   display: flex;
   align-items: flex-start;
@@ -131,12 +144,12 @@
   position: relative;
   z-index: 1;
   flex: 0 0 var(--works-card-size);
-  margin-inline: clamp(-2rem, -1.75vw, -1.25rem);
+  margin-inline: calc(var(--works-card-overlap) * -1);
   scroll-snap-align: center;
   scroll-snap-stop: always;
   transform: scale(0.86);
   transform-origin: center top;
-  transition: transform 480ms var(--ease-emphasized);
+  transition: transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .workCardFocused {
   z-index: 3;
@@ -151,7 +164,7 @@
   border-radius: var(--radius-lg);
   background: var(--color-surface-subtle);
   cursor: pointer;
-  transition: box-shadow 480ms var(--ease-emphasized);
+  transition: box-shadow 560ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .workLink .projectCover {
   display: block;
@@ -160,10 +173,10 @@
   object-fit: cover;
   transition:
     transform var(--duration-slow) var(--ease-emphasized),
-    filter 420ms var(--ease-emphasized);
+    filter 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .workCard:not(.workCardFocused) .projectCover {
-  filter: brightness(0.9);
+  filter: brightness(0.88);
 }
 .workCardFocused .projectCover,
 .workCard:focus-within .projectCover {
@@ -223,14 +236,14 @@
 }
 .workCardFocused .workLink,
 .workCard:focus-within .workLink {
-  box-shadow: 0 2.5rem 5rem 2.5rem var(--color-surface-base);
+  box-shadow: 0 3rem 7rem 4.5rem var(--color-surface-base);
 }
 @media (hover: hover) and (pointer: fine) {
   .workCard:hover {
     z-index: 4;
   }
   .workCard:not(.workCardFocused):hover {
-    transform: scale(0.86) translateY(3.75vh);
+    transform: scale(0.86) translateY(3.25vh);
   }
   .workCard:hover .workMeta {
     opacity: 1;
@@ -238,7 +251,7 @@
     transform: translateY(0);
   }
   .workCard:hover .workLink {
-    box-shadow: 0 2.5rem 5rem 2.5rem var(--color-surface-base);
+    box-shadow: 0 3rem 7rem 4.5rem var(--color-surface-base);
   }
   .workCard:not(.workCardFocused):hover .projectCover {
     filter: brightness(0.95);
@@ -281,6 +294,7 @@
   }
   .worksTrack {
     --works-card-size: 88vw;
+    --works-card-overlap: 0rem;
     --works-edge-space: var(--space-xs);
 
     padding: var(--space-lg) 0 var(--space-xl);
