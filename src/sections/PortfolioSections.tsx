@@ -80,6 +80,11 @@ export function PortfolioSections() {
                       <p className={styles.notice}>{project.status}</p>
                       <h3>{project.title}</h3>
                       <p>{project.shortDescription}</p>
+                      <ul className={styles.worksTags} aria-label={project.title}>
+                        {project.technologies.slice(0, 4).map((technology) => (
+                          <li key={technology}>{technology}</li>
+                        ))}
+                      </ul>
                     </div>
                     <Link href={`/projetos/${project.slug}`}>{works.action} ↗</Link>
                   </div>

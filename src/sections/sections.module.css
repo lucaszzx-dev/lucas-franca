@@ -67,24 +67,30 @@
   backdrop-filter: blur(8px);
   cursor: pointer;
   transform: translateY(-50%);
+  transition:
+    transform var(--duration-base) var(--ease-emphasized),
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
 }
 .worksControls button:nth-of-type(1) {
-  left: var(--space-md);
+  left: clamp(4rem, 6vw, 6rem);
 }
 .worksControls button:nth-of-type(2) {
   right: var(--space-md);
 }
 .worksControls > span {
   position: absolute;
-  top: var(--space-sm);
-  left: var(--space-sm);
+  top: var(--space-md);
+  left: clamp(4.25rem, 7vw, 6.5rem);
   z-index: 3;
   padding: 0.35rem 0.5rem;
   background: color-mix(in srgb, var(--color-surface-base) 78%, transparent);
 }
 .worksControls button:not(:disabled):hover {
   border-color: var(--color-accent);
-  color: var(--color-accent);
+  color: var(--color-accent-contrast);
+  background: var(--color-accent);
 }
 .worksControls button:disabled {
   opacity: 0.38;
@@ -106,7 +112,7 @@
   display: none;
 }
 .workCard {
-  flex: 0 0 min(72vw, 57rem);
+  flex: 0 0 min(80vw, 72rem);
   scroll-snap-align: start;
 }
 @media (max-width: 47.99rem) {
@@ -129,17 +135,28 @@
   .worksControls button:nth-of-type(2) {
     right: var(--space-sm);
   }
+  .worksControls > span {
+    top: var(--space-sm);
+    left: 4rem;
+  }
+  .workCard {
+    flex-basis: 88vw;
+  }
 }
 .workLink {
   min-height: unset;
   aspect-ratio: 16 / 10;
   border-radius: var(--radius-lg);
+  cursor: pointer;
 }
 .workLink .projectCover {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition:
+    transform var(--duration-slow) var(--ease-emphasized),
+    filter var(--duration-base) var(--ease-standard);
 }
 .workMeta {
   display: grid;
@@ -161,11 +178,38 @@
   margin-top: var(--space-2xs);
   color: var(--color-text-secondary);
 }
+.worksTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-top: var(--space-sm);
+  list-style: none;
+}
+.worksTags li {
+  padding: var(--space-3xs) var(--space-xs);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
 .workMeta > a {
   padding-top: var(--space-sm);
   color: var(--color-accent);
   font-size: var(--text-sm);
   white-space: nowrap;
+}
+@media (hover: hover) and (pointer: fine) {
+  .workLink:hover .projectCover {
+    filter: brightness(1.08);
+    transform: scale(1.04);
+  }
+  .worksTags li:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
 }
 .card {
   display: grid;
@@ -516,7 +560,7 @@
 .workLink {
   position: relative;
   display: block;
-  min-height: 28rem;
+  min-height: 0;
   overflow: hidden;
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-lg);
@@ -563,11 +607,8 @@
 }
 @media (hover: hover) and (pointer: fine) {
   .workLink:hover .projectCover {
-    transform: scale(1.05);
-    filter: brightness(0.64);
-  }
-  .workLink:hover .workOverlay {
-    transform: translateY(0);
+    transform: scale(1.04);
+    filter: brightness(1.08);
   }
 }
 .aboutGrid {
