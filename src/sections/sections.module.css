@@ -61,10 +61,12 @@
   position: absolute;
   top: calc(var(--space-3xl) + clamp(6rem, 9vw, 9rem));
   z-index: 1;
+  display: grid;
   width: 3.25rem;
   min-height: 3.25rem;
+  place-items: center;
   border: 1px solid color-mix(in srgb, var(--color-text-primary) 40%, transparent);
-  border-radius: var(--radius-sm);
+  border-radius: 50%;
   color: var(--color-text-primary);
   background: color-mix(in srgb, var(--color-surface-base) 76%, transparent);
   backdrop-filter: blur(8px);
@@ -91,14 +93,10 @@
   padding: 0.35rem 0.5rem;
   background: color-mix(in srgb, var(--color-surface-base) 78%, transparent);
 }
-.worksControls button:not(:disabled):hover {
+.worksControls button:hover {
   border-color: var(--color-accent);
   color: var(--color-accent-contrast);
   background: var(--color-accent);
-}
-.worksControls button:disabled {
-  opacity: 0.38;
-  cursor: default;
 }
 .worksViewport {
   position: relative;
@@ -111,9 +109,10 @@
 .worksTrack {
   display: flex;
   align-items: flex-start;
-  gap: var(--space-lg);
+  gap: 0;
   overflow-x: auto;
-  padding: var(--space-3xs) 0 var(--space-sm);
+  padding: var(--space-3xs) 0 var(--space-xl);
+  scroll-padding-inline: clamp(1rem, 4vw, 4rem);
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
 }
@@ -121,20 +120,125 @@
   display: none;
 }
 .worksTrack::after {
-  flex: 0 0 calc(100% - clamp(19rem, 30vw, 27rem));
+  flex: 0 0 clamp(2rem, 8vw, 8rem);
   content: "";
 }
 .workCard {
   position: relative;
   z-index: 1;
-  flex: 0 0 clamp(19rem, 30vw, 27rem);
-  scroll-snap-align: start;
+  flex: 0 0 clamp(22rem, 26vw, 24rem);
+  margin-inline: calc(var(--space-md) * -1);
+  scroll-snap-align: center;
+  transform: scale(0.84);
+  transform-origin: center top;
+  transition: transform var(--duration-base) var(--ease-emphasized);
+}
+.workCardFocused {
+  z-index: 3;
+  transform: scale(1);
+}
+.workLink {
+  position: relative;
+  display: block;
+  min-height: unset;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-subtle);
+  cursor: pointer;
+  transition: box-shadow var(--duration-base) var(--ease-emphasized);
+}
+.workLink .projectCover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-emphasized);
+}
+.workMeta {
+  display: grid;
+  gap: var(--space-2xs);
+  padding: var(--space-md) var(--space-sm) 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(var(--space-sm) * -1));
+  transition:
+    opacity var(--duration-base) var(--ease-emphasized),
+    transform var(--duration-base) var(--ease-emphasized);
+}
+.workMeta h3 {
+  font-size: var(--text-2xl);
+  letter-spacing: var(--tracking-tight);
+}
+.workSummary {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+.worksTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-top: var(--space-sm);
+  list-style: none;
+}
+.worksTags li {
+  padding: 0.18rem var(--space-2xs);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 68%, transparent);
+  border-radius: var(--radius-xs);
+  color: var(--color-accent);
+  font: var(--text-xs) var(--font-mono);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
+.workMeta > a {
+  width: fit-content;
+  margin-top: var(--space-2xs);
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+.workCardFocused .workMeta,
+.workCard:focus-within .workMeta {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.workCardFocused .workLink,
+.workCard:focus-within .workLink {
+  box-shadow: 0 2.5rem 5rem 2.5rem var(--color-surface-base);
+}
+@media (hover: hover) and (pointer: fine) {
+  .workCard:hover {
+    z-index: 4;
+  }
+  .workCard:not(.workCardFocused):hover {
+    transform: scale(0.84) translateY(4.5vh);
+  }
+  .workCard:hover .workMeta {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .workCard:hover .workLink {
+    box-shadow: 0 2.5rem 5rem 2.5rem var(--color-surface-base);
+  }
+  .workCard:hover .projectCover {
+    transform: scale(1.02);
+  }
+  .worksTags li:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
 }
 @media (max-width: 47.99rem) {
   .worksSection {
     padding-top: var(--space-2xl);
   }
-  .worksLabel {
+  .worksSection .worksLabel {
     top: var(--space-lg);
     left: var(--page-gutter);
     writing-mode: horizontal-tb;
@@ -155,137 +259,26 @@
     top: var(--space-lg);
     left: 4rem;
   }
+  .worksViewport {
+    margin-inline: 0;
+  }
   .worksTrack {
-    padding: var(--space-3xs) var(--space-md) var(--space-sm) 0;
+    padding: var(--space-3xs) var(--space-md) var(--space-xl) 0;
   }
   .worksTrack::after {
     flex-basis: var(--space-md);
   }
-  .worksViewport {
-    margin-inline: 0;
-  }
   .workCard {
     flex-basis: 88vw;
+    margin-inline: 0;
+    transform: scale(0.92);
   }
-}
-.workLink {
-  position: relative;
-  display: block;
-  min-height: unset;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-subtle);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.32);
-  cursor: pointer;
-  transition:
-    transform var(--duration-base) var(--ease-emphasized),
-    box-shadow var(--duration-base) var(--ease-emphasized);
-}
-.workLink .projectCover {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition:
-    transform var(--duration-slow) var(--ease-emphasized),
-    filter var(--duration-base) var(--ease-standard);
-}
-.workOverlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: var(--space-2xs);
-  padding: var(--space-lg) var(--space-md) var(--space-md);
-  color: var(--color-text-primary);
-  background: color-mix(in srgb, var(--color-surface-base) 88%, transparent);
-  opacity: 0;
-  transition: opacity var(--duration-base) var(--ease-emphasized);
-}
-.workOverlayNumber {
-  color: var(--color-accent);
-  font: var(--text-xs) var(--font-mono);
-}
-.workOverlayTitle {
-  font-size: var(--text-lg);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--tracking-tight);
-}
-.workOverlaySummary {
-  color: var(--color-text-secondary);
-  font-size: var(--text-sm);
-  line-height: var(--leading-relaxed);
-}
-.workOverlayAction {
-  color: var(--color-accent);
-  font-size: var(--text-sm);
-}
-.workMeta {
-  display: none;
-  grid-template-columns: 3rem minmax(0, 1fr);
-  gap: var(--space-md);
-  align-items: start;
-  padding: var(--space-md) var(--space-xs) 0;
-}
-.workMetaFocused {
-  display: grid;
-}
-.workMeta .workNumber {
-  position: static;
-  color: var(--color-accent);
-}
-.workMeta h3 {
-  margin-top: var(--space-3xs);
-  font-size: var(--text-2xl);
-  letter-spacing: var(--tracking-tight);
-}
-.workMeta p:not(.notice) {
-  margin-top: var(--space-2xs);
-  color: var(--color-text-secondary);
-}
-.worksTags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2xs);
-  margin-top: var(--space-sm);
-  list-style: none;
-}
-.worksTags li {
-  padding: var(--space-3xs) var(--space-xs);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-pill);
-  color: var(--color-text-muted);
-  font-size: var(--text-xs);
-  transition:
-    border-color var(--duration-fast) var(--ease-standard),
-    color var(--duration-fast) var(--ease-standard);
-}
-.workMeta > a {
-  grid-column: 2;
-  padding-top: 0;
-  color: var(--color-accent);
-  font-size: var(--text-sm);
-  white-space: nowrap;
-}
-@media (hover: hover) and (pointer: fine) {
-  .workCard:hover {
-    z-index: 5;
+  .workCardFocused,
+  .workCard:focus-within {
+    transform: scale(1);
   }
-  .workCard:hover .workLink {
-    transform: scale(1.1);
-    box-shadow: 0 2.5rem 5rem rgba(0, 0, 0, 0.55);
-  }
-  .workLink:hover .projectCover {
-    filter: brightness(0.35);
-  }
-  .workLink:hover .workOverlay {
-    opacity: 1;
-  }
-  .worksTags li:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+  .workMeta {
+    padding-inline: var(--space-xs);
   }
 }
 .card {

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { type MouseEvent, useRef, useState } from "react";
 import { useMotion } from "@/animations/useMotion";
 import { useLocale } from "@/components/LocaleProvider";
 import { getProjects } from "@/content/projects";
@@ -17,14 +17,27 @@ export function PortfolioSections() {
   const { works, about, stack, experience, services, contact, footer } = content;
   const projects = getProjects(locale);
   const allProjects = projects;
-  const moveWorks = (direction: 1 | -1) => {
-    const next = Math.max(0, Math.min(allProjects.length - 1, workPage + direction));
-    setWorkPage(next);
-    worksTrack.current?.children[next]?.scrollIntoView({
+  const activateWork = (index: number) => {
+    setWorkPage(index);
+    worksTrack.current?.children[index]?.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
-      inline: "start",
+      inline: "center",
     });
+  };
+  const moveWorks = (direction: 1 | -1) => {
+    const next = (workPage + direction + allProjects.length) % allProjects.length;
+
+    activateWork(next);
+  };
+  const selectWorkBeforeNavigation = (
+    event: MouseEvent<HTMLAnchorElement>,
+    index: number,
+  ) => {
+    if (index !== workPage) {
+      event.preventDefault();
+      activateWork(index);
+    }
   };
   const syncFocusedWork = () => {
     const track = worksTrack.current;
@@ -65,17 +78,11 @@ export function PortfolioSections() {
           <button
             type="button"
             onClick={() => moveWorks(-1)}
-            disabled={workPage === 0}
             aria-label="Previous project"
           >
             ←
           </button>
-          <button
-            type="button"
-            onClick={() => moveWorks(1)}
-            disabled={workPage === allProjects.length - 1}
-            aria-label="Next project"
-          >
+          <button type="button" onClick={() => moveWorks(1)} aria-label="Next project">
             →
           </button>
         </div>
@@ -92,8 +99,13 @@ export function PortfolioSections() {
                   className={`${styles.workCard} ${
                     index === workPage ? styles.workCardFocused : ""
                   }`}
+                  onFocusCapture={() => activateWork(index)}
                 >
-                  <Link className={styles.workLink} href={`/projetos/${project.slug}`}>
+                  <Link
+                    className={styles.workLink}
+                    href={`/projetos/${project.slug}`}
+                    onClick={(event) => selectWorkBeforeNavigation(event, index)}
+                  >
                     {project.gallery[0]?.src && (
                       <Image
                         className={styles.projectCover}
@@ -104,35 +116,15 @@ export function PortfolioSections() {
                         sizes="(max-width: 47.99rem) 88vw, (max-width: 80rem) 32vw, 28vw"
                       />
                     )}
-                    <span className={styles.workOverlay}>
-                      <span className={styles.workOverlayNumber}>
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <span className={styles.workOverlayTitle}>{project.title}</span>
-                      <span className={styles.workOverlaySummary}>
-                        {project.cardSummary}
-                      </span>
-                      <span className={styles.workOverlayAction}>{works.action} ↗</span>
-                    </span>
                   </Link>
-                  <div
-                    className={`${styles.workMeta} ${
-                      index === workPage ? styles.workMetaFocused : ""
-                    }`}
-                  >
-                    <span className={styles.workNumber}>
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <p className={styles.notice}>{project.status}</p>
-                      <h3>{project.title}</h3>
-                      <p>{project.cardSummary}</p>
-                      <ul className={styles.worksTags} aria-label={project.title}>
-                        {project.technologies.slice(0, 4).map((technology) => (
-                          <li key={technology}>{technology}</li>
-                        ))}
-                      </ul>
-                    </div>
+                  <div className={styles.workMeta}>
+                    <p className={styles.workSummary}>{project.cardSummary}</p>
+                    <h3>{project.title}</h3>
+                    <ul className={styles.worksTags} aria-label={project.title}>
+                      {project.technologies.slice(0, 4).map((technology) => (
+                        <li key={technology}>{technology}</li>
+                      ))}
+                    </ul>
                     <Link href={`/projetos/${project.slug}`}>{works.action} ↗</Link>
                   </div>
                 </article>
