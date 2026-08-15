@@ -8,9 +8,9 @@
 }
 .inner {
   min-height: 4.5rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
 }
 .brand {
   display: inline-flex;
@@ -35,6 +35,7 @@
 .nav {
   display: flex;
   align-items: center;
+  justify-self: center;
   gap: clamp(0.8rem, 1.8vw, 1.75rem);
   font-size: var(--text-xs);
   color: var(--color-text-secondary);
@@ -67,11 +68,11 @@
   transform: scaleX(1);
 }
 .locale {
-  display: flex;
-  gap: var(--space-3xs);
+  position: relative;
+  justify-self: end;
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-pill);
-  padding: 0.1rem;
+  color: var(--color-text-secondary);
 }
 .locale button,
 .menu {
@@ -80,16 +81,62 @@
   color: inherit;
   cursor: pointer;
 }
-.locale .active {
+.localeTrigger {
+  display: inline-flex;
+  gap: 0.3rem;
+  align-items: center;
+  min-width: 3.3rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-primary) !important;
+  font-size: var(--text-xs);
+}
+.localeTrigger span {
+  color: var(--color-accent);
+  font-size: 0.9em;
+}
+.localeMenu {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  z-index: 2;
+  display: grid;
+  min-width: 4.25rem;
+  padding: 0.25rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+  box-shadow: 0.5rem 0.5rem 0
+    color-mix(in srgb, var(--color-surface-base) 80%, transparent);
+}
+.localeOption {
+  padding: 0.4rem 0.55rem;
+  border-radius: var(--radius-xs);
+  text-align: left;
+  font-size: var(--text-xs);
+}
+.localeOption[aria-selected="true"] {
+  color: var(--color-accent);
+}
+.localeOption:hover,
+.localeOption:focus-visible {
+  background: var(--color-surface-subtle);
   color: var(--color-text-primary);
-  text-decoration: underline;
-  text-decoration-color: var(--color-accent);
-  text-underline-offset: 0.35em;
+}
+.mobileLocale {
+  display: none;
+}
+.desktopLocale {
+  grid-column: 3;
 }
 .menu {
   display: none;
 }
 @media (max-width: 47.99rem) {
+  .inner {
+    display: flex;
+    justify-content: space-between;
+  }
   .menu {
     display: block;
   }
@@ -106,5 +153,22 @@
   }
   .nav.open {
     display: flex;
+  }
+  .desktopLocale {
+    display: none;
+  }
+  .mobileLocale {
+    display: block;
+    align-self: stretch;
+    margin-top: var(--space-xs);
+  }
+  .mobileLocale .localeTrigger {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .mobileLocale .localeMenu {
+    right: auto;
+    left: 0;
+    width: 100%;
   }
 }

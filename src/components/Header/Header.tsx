@@ -1,12 +1,76 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { Locale } from "@/types/content";
 import { useLocale } from "@/components/LocaleProvider";
 import styles from "./Header.module.css";
+
+type LanguageDropdownProps = {
+  locale: Locale;
+  languageLabel: string;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  setLocale: (locale: Locale) => void;
+  className?: string;
+};
+
+function LanguageDropdown({
+  locale,
+  languageLabel,
+  open,
+  setOpen,
+  setLocale,
+  className,
+}: LanguageDropdownProps) {
+  const activeLabel = locale === "pt-BR" ? "PT" : "EN";
+  const otherLocale: Locale = locale === "pt-BR" ? "en" : "pt-BR";
+  const otherLabel = otherLocale === "pt-BR" ? "PT" : "EN";
+  return (
+    <div className={`${styles.locale} ${className ?? ""}`}>
+      <button
+        type="button"
+        className={styles.localeTrigger}
+        aria-label={languageLabel}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+        onClick={() => setOpen(!open)}
+      >
+        {activeLabel} <span aria-hidden="true">⌄</span>
+      </button>
+      {open && (
+        <div className={styles.localeMenu} role="listbox" aria-label={languageLabel}>
+          <button
+            type="button"
+            role="option"
+            aria-selected="true"
+            className={styles.localeOption}
+            onClick={() => setOpen(false)}
+          >
+            {activeLabel}
+          </button>
+          <button
+            type="button"
+            role="option"
+            aria-selected="false"
+            className={styles.localeOption}
+            onClick={() => {
+              setLocale(otherLocale);
+              setOpen(false);
+            }}
+          >
+            {otherLabel}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("#inicio");
+  const [localeOpen, setLocaleOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const { locale, content, setLocale } = useLocale();
   useEffect(() => {
     const sections = content.nav
@@ -22,8 +86,25 @@ export function Header() {
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, [content.nav]);
+  useEffect(() => {
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) setLocaleOpen(false);
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setLocaleOpen(false);
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsideClick);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, []);
   return (
-    <header className={styles.header}>
+    <header ref={headerRef} className={styles.header}>
       <div className={`container ${styles.inner}`}>
         <a
           className={styles.brand}
@@ -51,28 +132,31 @@ export function Header() {
               key={item.href}
               href={item.href}
               className={activeSection === item.href ? styles.navActive : ""}
-              onClick={() => setMenuOpen(false)}
+              onClick={() => {
+                setMenuOpen(false);
+                setLocaleOpen(false);
+              }}
             >
               {item.label}
             </a>
           ))}
-          <div className={styles.locale} aria-label={content.header.language}>
-            <button
-              className={locale === "pt-BR" ? styles.active : ""}
-              onClick={() => setLocale("pt-BR")}
-              aria-pressed={locale === "pt-BR"}
-            >
-              PT
-            </button>
-            <button
-              className={locale === "en" ? styles.active : ""}
-              onClick={() => setLocale("en")}
-              aria-pressed={locale === "en"}
-            >
-              EN
-            </button>
-          </div>
+          <LanguageDropdown
+            className={styles.mobileLocale}
+            locale={locale}
+            languageLabel={content.header.language}
+            open={localeOpen}
+            setLocale={setLocale}
+            setOpen={setLocaleOpen}
+          />
         </nav>
+        <LanguageDropdown
+          className={styles.desktopLocale}
+          locale={locale}
+          languageLabel={content.header.language}
+          open={localeOpen}
+          setLocale={setLocale}
+          setOpen={setLocaleOpen}
+        />
       </div>
     </header>
   );
