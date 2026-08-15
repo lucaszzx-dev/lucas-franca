@@ -107,7 +107,7 @@
   margin-inline: clamp(6.5rem, 8.25vw, 8rem);
 }
 .worksTrack {
-  --works-card-size: clamp(20rem, 23vw, 23rem);
+  --works-card-size: clamp(23rem, 27vw, 27rem);
   --works-edge-space: max(var(--space-lg), calc(50% - clamp(10rem, 11.5vw, 11.5rem)));
 
   display: flex;
@@ -131,12 +131,12 @@
   position: relative;
   z-index: 1;
   flex: 0 0 var(--works-card-size);
-  margin-inline: calc(var(--space-md) * -1);
+  margin-inline: clamp(-2rem, -1.75vw, -1.25rem);
   scroll-snap-align: center;
   scroll-snap-stop: always;
-  transform: scale(0.84);
+  transform: scale(0.86);
   transform-origin: center top;
-  transition: transform var(--duration-base) var(--ease-emphasized);
+  transition: transform 480ms var(--ease-emphasized);
 }
 .workCardFocused {
   z-index: 3;
@@ -151,14 +151,23 @@
   border-radius: var(--radius-lg);
   background: var(--color-surface-subtle);
   cursor: pointer;
-  transition: box-shadow var(--duration-base) var(--ease-emphasized);
+  transition: box-shadow 480ms var(--ease-emphasized);
 }
 .workLink .projectCover {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--duration-slow) var(--ease-emphasized);
+  transition:
+    transform var(--duration-slow) var(--ease-emphasized),
+    filter 420ms var(--ease-emphasized);
+}
+.workCard:not(.workCardFocused) .projectCover {
+  filter: brightness(0.9);
+}
+.workCardFocused .projectCover,
+.workCard:focus-within .projectCover {
+  filter: brightness(1);
 }
 .workMeta {
   display: grid;
@@ -168,8 +177,8 @@
   pointer-events: none;
   transform: translateY(calc(var(--space-sm) * -1));
   transition:
-    opacity var(--duration-base) var(--ease-emphasized),
-    transform var(--duration-base) var(--ease-emphasized);
+    opacity 360ms var(--ease-standard),
+    transform 480ms var(--ease-emphasized);
 }
 .workMeta h3 {
   font-size: var(--text-2xl);
@@ -221,7 +230,7 @@
     z-index: 4;
   }
   .workCard:not(.workCardFocused):hover {
-    transform: scale(0.84) translateY(4.5vh);
+    transform: scale(0.86) translateY(3.75vh);
   }
   .workCard:hover .workMeta {
     opacity: 1;
@@ -230,6 +239,9 @@
   }
   .workCard:hover .workLink {
     box-shadow: 0 2.5rem 5rem 2.5rem var(--color-surface-base);
+  }
+  .workCard:not(.workCardFocused):hover .projectCover {
+    filter: brightness(0.95);
   }
   .workCard:hover .projectCover {
     transform: scale(1.02);
