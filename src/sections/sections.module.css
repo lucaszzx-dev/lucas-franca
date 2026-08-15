@@ -21,25 +21,66 @@
   margin-top: var(--space-xl);
 }
 /* Gallery composition: media and editorial metadata are deliberately separate. */
+.worksSection {
+  position: relative;
+}
+.worksLabel {
+  position: absolute;
+  top: var(--space-3xl);
+  left: clamp(0.75rem, 2vw, 2rem);
+  z-index: 1;
+  margin: 0;
+  color: var(--color-text-muted);
+  font: var(--text-xs) var(--font-mono);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
 .worksControls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: var(--space-lg);
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: contents;
   color: var(--color-text-muted);
   font: var(--text-xs) var(--font-mono);
 }
-.worksControls > div {
-  display: flex;
-  gap: var(--space-xs);
-}
 .worksControls button {
-  width: 2.75rem;
-  aspect-ratio: 1;
-  border: 1px solid var(--color-border-strong);
-  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 3.25rem;
+  min-height: 3.25rem;
+  border: 1px solid color-mix(in srgb, var(--color-text-primary) 40%, transparent);
+  border-radius: var(--radius-sm);
   color: var(--color-text-primary);
+  background: color-mix(in srgb, var(--color-surface-base) 76%, transparent);
+  backdrop-filter: blur(8px);
   cursor: pointer;
+  transform: translateY(-50%);
+}
+.worksControls button:nth-of-type(1) {
+  left: var(--space-md);
+}
+.worksControls button:nth-of-type(2) {
+  right: var(--space-md);
+}
+.worksControls > span {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 3;
+  padding: 0.35rem 0.5rem;
+  background: color-mix(in srgb, var(--color-surface-base) 78%, transparent);
 }
 .worksControls button:not(:disabled):hover {
   border-color: var(--color-accent);
@@ -50,7 +91,7 @@
   cursor: default;
 }
 .worksViewport {
-  margin-top: var(--space-md);
+  position: relative;
   overflow: hidden;
 }
 .worksTrack {
@@ -67,6 +108,27 @@
 .workCard {
   flex: 0 0 min(72vw, 57rem);
   scroll-snap-align: start;
+}
+@media (max-width: 47.99rem) {
+  .worksSection {
+    padding-top: var(--space-2xl);
+  }
+  .worksLabel {
+    top: var(--space-lg);
+    left: var(--page-gutter);
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+  .worksControls button {
+    width: 2.75rem;
+    min-height: 2.75rem;
+  }
+  .worksControls button:nth-of-type(1) {
+    left: var(--space-sm);
+  }
+  .worksControls button:nth-of-type(2) {
+    right: var(--space-sm);
+  }
 }
 .workLink {
   min-height: unset;

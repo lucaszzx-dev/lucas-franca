@@ -28,18 +28,18 @@ export function PortfolioSections() {
   };
   return (
     <div ref={ref}>
-      <section id="trabalhos" className={styles.section}>
+      <section id="trabalhos" className={`${styles.section} ${styles.worksSection}`}>
+        <h2 className={styles.worksLabel}>
+          <span aria-hidden="true">{works.eyebrow}</span>
+          <span className={styles.srOnly}>{works.title}</span>
+        </h2>
         <div className="container">
-          <p className={styles.eyebrow} data-reveal>
-            {works.eyebrow}
-          </p>
-          <h2 data-text-reveal>{works.title}</h2>
-          <div className={styles.worksControls} data-reveal>
-            <span>
-              {String(workPage + 1).padStart(2, "0")} /{" "}
-              {String(allProjects.length).padStart(2, "0")}
-            </span>
-            <div>
+          <div className={styles.worksViewport} data-reveal>
+            <div className={styles.worksControls}>
+              <span>
+                {String(workPage + 1).padStart(2, "0")} /{" "}
+                {String(allProjects.length).padStart(2, "0")}
+              </span>
               <button
                 type="button"
                 onClick={() => moveWorks(-1)}
@@ -57,8 +57,6 @@ export function PortfolioSections() {
                 →
               </button>
             </div>
-          </div>
-          <div className={styles.worksViewport} data-reveal>
             <div className={styles.worksTrack} ref={worksTrack}>
               {allProjects.map((project, index) => (
                 <article key={project.slug} className={styles.workCard}>
