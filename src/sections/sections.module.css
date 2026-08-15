@@ -107,6 +107,7 @@
 }
 .worksTrack {
   display: flex;
+  align-items: flex-start;
   gap: var(--space-lg);
   overflow-x: auto;
   padding: var(--space-3xs) 0 var(--space-sm);
@@ -116,8 +117,12 @@
 .worksTrack::-webkit-scrollbar {
   display: none;
 }
+.worksTrack::after {
+  flex: 0 0 calc(100% - clamp(19rem, 30vw, 27rem));
+  content: "";
+}
 .workCard {
-  flex: 0 0 clamp(17rem, 28vw, 25rem);
+  flex: 0 0 clamp(19rem, 30vw, 27rem);
   scroll-snap-align: start;
 }
 @media (max-width: 47.99rem) {
@@ -147,6 +152,9 @@
   }
   .worksTrack {
     padding: var(--space-3xs) var(--space-md) var(--space-sm) 0;
+  }
+  .worksTrack::after {
+    flex-basis: var(--space-md);
   }
   .worksViewport {
     margin-inline: 0;
