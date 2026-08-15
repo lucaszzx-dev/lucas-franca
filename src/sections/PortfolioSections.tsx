@@ -12,21 +12,77 @@ export function PortfolioSections() {
   const { content, locale } = useLocale();
   const ref = useRef<HTMLDivElement>(null);
   const worksTrack = useRef<HTMLDivElement>(null);
+  const activeWorkIndex = useRef(0);
+  const isProgrammaticWorksScroll = useRef(false);
+  const worksScrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [workPage, setWorkPage] = useState(0);
   useMotion(ref);
   const { works, about, stack, experience, services, contact, footer } = content;
   const projects = getProjects(locale);
   const allProjects = projects;
+  const syncFocusedWork = () => {
+    if (worksScrollTimeout.current) {
+      clearTimeout(worksScrollTimeout.current);
+    }
+
+    worksScrollTimeout.current = setTimeout(() => {
+      if (isProgrammaticWorksScroll.current) {
+        isProgrammaticWorksScroll.current = false;
+        return;
+      }
+
+      const track = worksTrack.current;
+
+      if (!track) {
+        return;
+      }
+
+      const trackBounds = track.getBoundingClientRect();
+      const trackCenter = trackBounds.left + trackBounds.width / 2;
+      const cards = Array.from(track.children) as HTMLElement[];
+      let closestIndex = activeWorkIndex.current;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      cards.forEach((card, index) => {
+        const cardBounds = card.getBoundingClientRect();
+        const cardCenter = cardBounds.left + cardBounds.width / 2;
+        const distance = Math.abs(cardCenter - trackCenter);
+
+        if (distance < closestDistance) {
+          closestIndex = index;
+          closestDistance = distance;
+        }
+      });
+
+      activeWorkIndex.current = closestIndex;
+      setWorkPage((currentPage) =>
+        currentPage === closestIndex ? currentPage : closestIndex,
+      );
+    }, 140);
+  };
   const activateWork = (index: number) => {
+    const track = worksTrack.current;
+
+    if (!track) {
+      return;
+    }
+
+    if (activeWorkIndex.current === index) {
+      return;
+    }
+
+    isProgrammaticWorksScroll.current = true;
+    activeWorkIndex.current = index;
     setWorkPage(index);
-    worksTrack.current?.children[index]?.scrollIntoView({
+    track.children[index]?.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
       inline: "center",
     });
   };
   const moveWorks = (direction: 1 | -1) => {
-    const next = (workPage + direction + allProjects.length) % allProjects.length;
+    const next =
+      (activeWorkIndex.current + direction + allProjects.length) % allProjects.length;
 
     activateWork(next);
   };
@@ -38,30 +94,6 @@ export function PortfolioSections() {
       event.preventDefault();
       activateWork(index);
     }
-  };
-  const syncFocusedWork = () => {
-    const track = worksTrack.current;
-
-    if (!track) {
-      return;
-    }
-
-    const cards = Array.from(track.children) as HTMLElement[];
-    let closestIndex = 0;
-    let closestDistance = Number.POSITIVE_INFINITY;
-
-    cards.forEach((card, index) => {
-      const distance = Math.abs(card.offsetLeft - track.scrollLeft);
-
-      if (distance < closestDistance) {
-        closestIndex = index;
-        closestDistance = distance;
-      }
-    });
-
-    setWorkPage((currentPage) =>
-      currentPage === closestIndex ? currentPage : closestIndex,
-    );
   };
   return (
     <div ref={ref}>

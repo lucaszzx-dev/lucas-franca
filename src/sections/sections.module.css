@@ -107,28 +107,33 @@
   margin-inline: clamp(6.5rem, 8.25vw, 8rem);
 }
 .worksTrack {
+  --works-card-size: clamp(20rem, 23vw, 23rem);
+  --works-edge-space: max(var(--space-lg), calc(50% - clamp(10rem, 11.5vw, 11.5rem)));
+
   display: flex;
   align-items: flex-start;
   gap: 0;
   overflow-x: auto;
-  padding: var(--space-3xs) 0 var(--space-xl);
-  scroll-padding-inline: clamp(1rem, 4vw, 4rem);
+  padding: var(--space-lg) 0 var(--space-xl);
+  scroll-padding-inline: var(--works-edge-space);
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
 }
 .worksTrack::-webkit-scrollbar {
   display: none;
 }
+.worksTrack::before,
 .worksTrack::after {
-  flex: 0 0 clamp(2rem, 8vw, 8rem);
+  flex: 0 0 var(--works-edge-space);
   content: "";
 }
 .workCard {
   position: relative;
   z-index: 1;
-  flex: 0 0 clamp(22rem, 26vw, 24rem);
+  flex: 0 0 var(--works-card-size);
   margin-inline: calc(var(--space-md) * -1);
   scroll-snap-align: center;
+  scroll-snap-stop: always;
   transform: scale(0.84);
   transform-origin: center top;
   transition: transform var(--duration-base) var(--ease-emphasized);
@@ -263,13 +268,13 @@
     margin-inline: 0;
   }
   .worksTrack {
-    padding: var(--space-3xs) var(--space-md) var(--space-xl) 0;
-  }
-  .worksTrack::after {
-    flex-basis: var(--space-md);
+    --works-card-size: 88vw;
+    --works-edge-space: var(--space-xs);
+
+    padding: var(--space-lg) 0 var(--space-xl);
   }
   .workCard {
-    flex-basis: 88vw;
+    flex-basis: var(--works-card-size);
     margin-inline: 0;
     transform: scale(0.92);
   }
