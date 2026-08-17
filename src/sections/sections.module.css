@@ -1,4 +1,4 @@
-.hero {
+﻿.hero {
   display: grid;
   min-height: calc(100svh - 4.5rem);
   align-items: center;
@@ -53,7 +53,7 @@
 .worksControls {
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 10;
   pointer-events: none;
   color: var(--color-text-muted);
   font: var(--text-xs) var(--font-mono);
@@ -150,7 +150,7 @@
   transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .workCardFocused {
-  z-index: 3;
+  z-index: 5;
   transform: scale(1);
 }
 .workLink {
@@ -239,10 +239,10 @@
 }
 @media (hover: hover) and (pointer: fine) {
   .workCard:hover {
-    z-index: 4;
+    z-index: 6;
   }
   .workCard:not(.workCardFocused):hover {
-    transform: scale(0.84) translateY(1.25rem);
+    transform: scale(0.86) translateY(1.25rem);
   }
   .workCard:hover .workMeta {
     opacity: 1;
