@@ -418,6 +418,7 @@
   overflow: hidden;
   width: 100vw;
   margin-left: calc(50% - 50vw);
+  padding-block: var(--space-sm);
   mask-image: linear-gradient(
     to right,
     transparent 0%,
@@ -461,12 +462,12 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-100% / 6));
   }
 }
 @keyframes marqueeScrollRight {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-100% / 12));
   }
   100% {
     transform: translateX(0);
@@ -561,7 +562,7 @@
   }
   .marquee[data-direction="reverse"] .marqueeTrack {
     animation: none;
-    transform: translateX(-50%);
+    transform: translateX(calc(-100% / 12));
   }
   .marqueeItem[aria-hidden="true"] {
     display: none;

@@ -215,6 +215,8 @@ export function PortfolioSections() {
           {stack.groups.map((group, groupIndex) => {
             const isLearningGroup = groupIndex === 1;
             const direction = isLearningGroup ? "reverse" : "normal";
+            // Learning group has fewer items (4 vs 7), so use more visual repetitions
+            const visualRepetitions = isLearningGroup ? 12 : 6;
             return (
               <div key={group.label} className={styles.stackColumn} data-reveal>
                 <p className={styles.stackLabel}>{group.label}</p>
@@ -225,7 +227,7 @@ export function PortfolioSections() {
                   data-direction={direction}
                 >
                   <div className={styles.marqueeTrack}>
-                    {Array.from({ length: 6 })
+                    {Array.from({ length: visualRepetitions })
                       .flatMap(() => group.items)
                       .map((item, index) => {
                         const Icon = stackIcons[item];
