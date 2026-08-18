@@ -210,21 +210,24 @@ export function PortfolioSections() {
             {stack.eyebrow}
           </p>
           <h2 data-text-reveal>{stack.title}</h2>
-          <div className={styles.stackWrapper}>
-            {stack.groups.map((group, groupIndex) => {
-              const isLearningGroup = groupIndex === 1;
-              const direction = isLearningGroup ? "reverse" : "normal";
-              return (
-                <div key={group.label} className={styles.stackColumn} data-reveal>
-                  <p className={styles.stackLabel}>{group.label}</p>
-                  <div
-                    className={`${styles.marquee} ${
-                      isLearningGroup ? styles.marqueeLearning : styles.marqueeCore
-                    }`}
-                    data-direction={direction}
-                  >
-                    <div className={styles.marqueeTrack}>
-                      {group.items.concat(group.items).map((item, index) => {
+        </div>
+        <div className={styles.stackWrapper}>
+          {stack.groups.map((group, groupIndex) => {
+            const isLearningGroup = groupIndex === 1;
+            const direction = isLearningGroup ? "reverse" : "normal";
+            return (
+              <div key={group.label} className={styles.stackColumn} data-reveal>
+                <p className={styles.stackLabel}>{group.label}</p>
+                <div
+                  className={`${styles.marquee} ${
+                    isLearningGroup ? styles.marqueeLearning : styles.marqueeCore
+                  }`}
+                  data-direction={direction}
+                >
+                  <div className={styles.marqueeTrack}>
+                    {Array.from({ length: 6 })
+                      .flatMap(() => group.items)
+                      .map((item, index) => {
                         const Icon = stackIcons[item];
                         return (
                           <span
@@ -232,18 +235,17 @@ export function PortfolioSections() {
                             className={styles.marqueeItem}
                             aria-hidden={index >= group.items.length}
                             tabIndex={index >= group.items.length ? -1 : 0}
-                            title={item}
                           >
                             {Icon ? <Icon className={styles.marqueeIcon} /> : item}
+                            <span className={styles.marqueeTooltip}>{item}</span>
                           </span>
                         );
                       })}
-                    </div>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 

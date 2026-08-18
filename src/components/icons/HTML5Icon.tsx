@@ -7,23 +7,24 @@ export function HTML5Icon(props: SVGProps<SVGSVGElement>) {
         d="M12 2L2 7v10l10 5 10-5V7L12 2z"
         stroke="currentColor"
         strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
       />
       <path
-        d="M12 16V8"
+        d="M12 6v6M9 9h6"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
-      <path
-        d="M8 12h8"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <text
+        x="12"
+        y="17"
+        text-anchor="middle"
+        font-size="6"
+        font-weight="bold"
+        fill="currentColor"
+        font-family="system-ui, sans-serif"
+      >
+        5
+      </text>
     </svg>
   );
 }

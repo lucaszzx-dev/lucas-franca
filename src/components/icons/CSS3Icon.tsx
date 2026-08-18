@@ -7,16 +7,24 @@ export function CSS3Icon(props: SVGProps<SVGSVGElement>) {
         d="M12 2L2 7v10l10 5 10-5V7L12 2z"
         stroke="currentColor"
         strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
       />
       <path
         d="M8 10h8M8 14h8"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
+      <text
+        x="12"
+        y="17"
+        text-anchor="middle"
+        font-size="6"
+        font-weight="bold"
+        fill="currentColor"
+        font-family="system-ui, sans-serif"
+      >
+        3
+      </text>
     </svg>
   );
 }
