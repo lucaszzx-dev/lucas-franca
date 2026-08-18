@@ -42,7 +42,11 @@ export const siteContent = {
     about: {
       eyebrow: "Sobre",
       title: "Construindo com intenção.",
-      copy: "Aos 18 anos, em Taboão da Serra — São Paulo, estudo Ciência da Computação e desenvolvo interfaces com atenção à clareza, produto e execução. Tenho interesse em produtos digitais, tecnologia e negócios, com mentalidade empreendedora. Busco aprofundar minha base técnica, ampliar progressivamente minha atuação para full stack e assumir responsabilidades cada vez maiores em tecnologia.",
+      copy: [
+        "Aos 18 anos, em Taboão da Serra — São Paulo, estudo Ciência da Computação e desenvolvo interfaces com atenção à clareza, ao produto e à execução.",
+        "Tenho interesse em produtos digitais, tecnologia e negócios, com mentalidade empreendedora. Construo pensando em uso real, não apenas em código.",
+        "Sigo aprofundando minha base técnica e ampliando progressivamente minha atuação para full stack, com ambição de assumir responsabilidades maiores em tecnologia.",
+      ],
       facts: [
         { value: "18", label: "anos" },
         { value: "SP", label: "Brasil" },
@@ -57,7 +61,10 @@ export const siteContent = {
           label: "Base principal",
           items: ["React", "JavaScript", "Node.js", "HTML5", "CSS", "Git", "GitHub"],
         },
-        { label: "Em aprendizado", items: ["TypeScript", "PostgreSQL", "Drizzle ORM"] },
+        {
+          label: "Em aprendizado",
+          items: ["TypeScript", "PostgreSQL", "Drizzle ORM", "Next.js"],
+        },
       ],
     },
     experience: {
@@ -143,7 +150,11 @@ export const siteContent = {
     about: {
       eyebrow: "About",
       title: "Building with intention.",
-      copy: "At 18, based in Taboão da Serra — São Paulo, I study Computer Science and build interfaces with attention to clarity, product and execution. I am interested in digital products, technology and business, with an entrepreneurial mindset. I aim to strengthen my technical foundation, progressively expand into full-stack development and take on increasing responsibility in technology.",
+      copy: [
+        "At 18, based in Taboão da Serra — São Paulo, I study Computer Science and build interfaces with attention to clarity, product and execution.",
+        "I am interested in digital products, technology and business, with an entrepreneurial mindset. I build for real use, not just for code.",
+        "I keep strengthening my technical foundation and progressively expanding into full-stack work, with the ambition to take on larger responsibilities in technology.",
+      ],
       facts: [
         { value: "18", label: "years old" },
         { value: "SP", label: "Brazil" },
@@ -160,7 +171,7 @@ export const siteContent = {
         },
         {
           label: "Currently learning",
-          items: ["TypeScript", "PostgreSQL", "Drizzle ORM"],
+          items: ["TypeScript", "PostgreSQL", "Drizzle ORM", "Next.js"],
         },
       ],
     },

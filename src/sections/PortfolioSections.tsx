@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -7,6 +7,8 @@ import { useMotion } from "@/animations/useMotion";
 import { useLocale } from "@/components/LocaleProvider";
 import { getProjects } from "@/content/projects";
 import styles from "./sections.module.css";
+
+import { stackIcons } from "@/components/icons";
 
 export function PortfolioSections() {
   const { content, locale } = useLocale();
@@ -208,27 +210,43 @@ export function PortfolioSections() {
             {stack.eyebrow}
           </p>
           <h2 data-text-reveal>{stack.title}</h2>
-          <div className={styles.stackGroups}>
-            {stack.groups.map((group) => (
-              <div key={group.label} data-reveal>
-                <p className={styles.stackLabel}>{group.label}</p>
-                <div className={styles.marquee}>
-                  <div className={styles.marqueeTrack}>
-                    {group.items.concat(group.items, group.items).map((item, index) => (
-                      <span
-                        key={`${item}-${index}`}
-                        aria-hidden={index >= group.items.length}
-                      >
-                        {item}
-                      </span>
-                    ))}
+          <div className={styles.stackWrapper}>
+            {stack.groups.map((group, groupIndex) => {
+              const isLearningGroup = groupIndex === 1;
+              const direction = isLearningGroup ? "reverse" : "normal";
+              return (
+                <div key={group.label} className={styles.stackColumn} data-reveal>
+                  <p className={styles.stackLabel}>{group.label}</p>
+                  <div
+                    className={`${styles.marquee} ${
+                      isLearningGroup ? styles.marqueeLearning : styles.marqueeCore
+                    }`}
+                    data-direction={direction}
+                  >
+                    <div className={styles.marqueeTrack}>
+                      {group.items.concat(group.items).map((item, index) => {
+                        const Icon = stackIcons[item];
+                        return (
+                          <span
+                            key={`${item}-${index}`}
+                            className={styles.marqueeItem}
+                            aria-hidden={index >= group.items.length}
+                            tabIndex={index >= group.items.length ? -1 : 0}
+                            title={item}
+                          >
+                            {Icon ? <Icon className={styles.marqueeIcon} /> : item}
+                          </span>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
+
       <section
         id="experiencia"
         className={`${styles.section} ${styles.journeySection}`}
