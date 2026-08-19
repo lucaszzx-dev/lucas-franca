@@ -215,8 +215,13 @@ export function PortfolioSections() {
           {stack.groups.map((group, groupIndex) => {
             const isLearningGroup = groupIndex === 1;
             const direction = isLearningGroup ? "reverse" : "normal";
-            // Learning group has fewer items (4 vs 7), so use more visual repetitions
-            const visualRepetitions = isLearningGroup ? 12 : 6;
+            // Each group needs to be wider than 100vw for seamless infinite loop
+            // Base group has 7 items, Learning group has 4 items - repeat internally
+            const itemsPerGroup = isLearningGroup
+              ? [...group.items, ...group.items, ...group.items, ...group.items] // 4x4 = 16 items
+              : [...group.items, ...group.items]; // 2x7 = 14 items
+            // Render exactly 2 identical groups for seamless loop
+            const trackItems = [...itemsPerGroup, ...itemsPerGroup];
             return (
               <div key={group.label} className={styles.stackColumn} data-reveal>
                 <p className={styles.stackLabel}>{group.label}</p>
@@ -227,22 +232,29 @@ export function PortfolioSections() {
                   data-direction={direction}
                 >
                   <div className={styles.marqueeTrack}>
-                    {Array.from({ length: visualRepetitions })
-                      .flatMap(() => group.items)
-                      .map((item, index) => {
-                        const Icon = stackIcons[item];
-                        return (
-                          <span
-                            key={`${item}-${index}`}
-                            className={styles.marqueeItem}
-                            aria-hidden={index >= group.items.length}
-                            tabIndex={index >= group.items.length ? -1 : 0}
-                          >
-                            {Icon ? <Icon className={styles.marqueeIcon} /> : item}
-                            <span className={styles.marqueeTooltip}>{item}</span>
-                          </span>
-                        );
-                      })}
+                    {trackItems.map((item, index) => {
+                      const Icon = stackIcons[item];
+                      return (
+                        <span
+                          key={`${group.label}-${item}-${index}`}
+                          className={styles.marqueeItem}
+                          tabIndex={0}
+                        >
+                          {Icon ? (
+                            <Icon
+                              className={styles.marqueeIcon}
+                              aria-hidden="true"
+                              style={{
+                                color: stackColors[item] ?? "currentColor",
+                              }}
+                            />
+                          ) : (
+                            <span>{item}</span>
+                          )}
+                          <span className={styles.marqueeTooltip}>{item}</span>
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -250,7 +262,6 @@ export function PortfolioSections() {
           })}
         </div>
       </section>
-
       <section
         id="experiencia"
         className={`${styles.section} ${styles.journeySection}`}
