@@ -1,4 +1,4 @@
-.hero {
+﻿.hero {
   display: grid;
   min-height: calc(100svh - 4.5rem);
   align-items: center;
@@ -445,13 +445,7 @@
     transparent 100%
   );
 }
-.marqueeTrack {
-  display: flex;
-  flex-wrap: nowrap;
-  width: max-content;
-
-  will-change: transform;
-}
+.marqueeTrack {  display: flex;  flex-wrap: nowrap;  width: max-content;  gap: calc(var(--space-sm) + var(--space-3xs));  will-change: transform;}
 .marqueeGroup {
   display: flex;
   flex-shrink: 0;
@@ -577,6 +571,42 @@
   width: clamp(1.75rem, 2.625vw, 2.1875rem);
   height: clamp(1.75rem, 2.625vw, 2.1875rem);
 }
+
+/* Brand colors for stack icons via data-tech attribute */
+.marqueeIcon[data-tech="React"] {
+  color: #61DAFB;
+}
+.marqueeIcon[data-tech="JavaScript"] {
+  color: #F7DF1E;
+}
+.marqueeIcon[data-tech="Node.js"] {
+  color: #339933;
+}
+.marqueeIcon[data-tech="HTML5"] {
+  color: #E34F26;
+}
+.marqueeIcon[data-tech="CSS"] {
+  color: #1572B6;
+}
+.marqueeIcon[data-tech="Git"] {
+  color: #F05032;
+}
+.marqueeIcon[data-tech="GitHub"] {
+  color: #FFFFFF;
+}
+.marqueeIcon[data-tech="TypeScript"] {
+  color: #3178C6;
+}
+.marqueeIcon[data-tech="PostgreSQL"] {
+  color: #336791;
+}
+.marqueeIcon[data-tech="Drizzle ORM"] {
+  color: #C5F74F;
+}
+.marqueeIcon[data-tech="Next.js"] {
+  color: #000000;
+}
+
 
 .journey {
   position: relative;
@@ -1098,3 +1128,5 @@
     height: 26rem;
   }
 }
+
+

@@ -241,13 +241,7 @@ export function PortfolioSections() {
                           tabIndex={0}
                         >
                           {Icon ? (
-                            <Icon
-                              className={styles.marqueeIcon}
-                              aria-hidden="true"
-                              style={{
-                                color: stackColors[item] ?? "currentColor",
-                              }}
-                            />
+                            <Icon className={styles.marqueeIcon} data-tech={item} aria-hidden="true" />
                           ) : (
                             <span>{item}</span>
                           )}
@@ -352,3 +346,4 @@ export function PortfolioSections() {
     </div>
   );
 }
+
