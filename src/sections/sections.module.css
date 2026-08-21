@@ -75,7 +75,7 @@
   color: var(--color-text-primary);
   background: var(--color-surface-raised);
   backdrop-filter: blur(8px);
-  box-shadow: 0 3px 0 color-mix(in srgb, var(--color-text-primary) 70%, transparent);
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--color-text-primary) 58%, transparent);
   cursor: pointer;
   pointer-events: auto;
   transform: translateY(-50%);
@@ -100,11 +100,17 @@
   padding: 0.35rem 0.5rem;
   background: color-mix(in srgb, var(--color-surface-base) 78%, transparent);
 }
-.worksControls button:hover {
-  border-color: var(--color-accent);
+.worksControls button:hover,
+.worksControls button:focus-visible {
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border-strong));
   color: var(--color-accent);
   background: var(--color-surface-overlay);
-  box-shadow: 0 4px 0 var(--color-accent);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--color-text-primary) 58%, transparent);
+  transform: translateY(-50%) translateY(2px);
+}
+.worksControls button:active {
+  box-shadow: none;
+  transform: translateY(-50%) translateY(3px);
 }
 .worksViewport {
   position: relative;
@@ -276,20 +282,33 @@
   border-radius: var(--radius-xs);
   color: var(--color-text-primary);
   background: var(--color-surface-raised);
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--color-text-primary) 58%, transparent);
   font: var(--text-xs) var(--font-mono);
   cursor: pointer;
   transition:
+    transform var(--duration-base) var(--ease-emphasized),
     border-color var(--duration-fast) var(--ease-standard),
     background-color var(--duration-fast) var(--ease-standard),
-    color var(--duration-fast) var(--ease-standard);
+    color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
 }
 .worksAllButton span {
-  color: var(--color-accent);
+  color: var(--color-text-primary);
 }
 .worksAllButton:hover,
 .worksAllButton:focus-visible {
-  border-color: var(--color-accent);
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border-strong));
   background: var(--color-surface-overlay);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--color-text-primary) 58%, transparent);
+  transform: translateY(2px);
+}
+.worksAllButton:hover span,
+.worksAllButton:focus-visible span {
+  color: var(--color-accent);
+}
+.worksAllButton:active {
+  box-shadow: none;
+  transform: translateY(3px);
 }
 .workCardFocused .workMeta,
 .workCard:focus-within .workMeta {
@@ -378,6 +397,12 @@
   }
   .workMeta {
     padding-inline: var(--space-xs);
+  }
+  .worksFooter {
+    align-items: flex-start;
+  }
+  .worksPagination {
+    margin-inline-start: 0;
   }
 }
 .card {
