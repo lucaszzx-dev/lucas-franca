@@ -22,6 +22,7 @@ export function PortfolioSections() {
   const { works, about, stack, experience, services, contact, footer } = content;
   const projects = getProjects(locale);
   const allProjects = projects;
+  const allWorksLabel = locale === "pt-BR" ? "Ver todos" : "View all";
   const syncFocusedWork = () => {
     if (worksScrollTimeout.current) {
       clearTimeout(worksScrollTimeout.current);
@@ -164,6 +165,23 @@ export function PortfolioSections() {
                 </article>
               ))}
             </div>
+          </div>
+          <div className={styles.worksFooter}>
+            <div className={styles.worksPagination} aria-label={works.title}>
+              {allProjects.map((project, index) => (
+                <button
+                  key={project.slug}
+                  type="button"
+                  className={index === workPage ? styles.worksPaginationActive : ""}
+                  onClick={() => activateWork(index)}
+                  aria-label={`Show ${project.title}`}
+                  aria-current={index === workPage ? "true" : undefined}
+                />
+              ))}
+            </div>
+            <Link className={styles.worksAllButton} href="/projetos">
+              {allWorksLabel} <span>→</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -346,4 +364,3 @@ export function PortfolioSections() {
     </div>
   );
 }
-

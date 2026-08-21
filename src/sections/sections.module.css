@@ -22,6 +22,10 @@
 }
 /* Gallery composition: media and editorial metadata are deliberately separate. */
 .worksSection {
+  --works-card-size: clamp(26rem, 29vw, 30rem);
+  --works-card-overlap: clamp(1.25rem, 1.45vw, 1.75rem);
+  --works-edge-space: clamp(2rem, 3vw, 4rem);
+
   position: relative;
   border-top: 0;
 }
@@ -60,17 +64,18 @@
 }
 .worksControls button {
   position: absolute;
-  top: calc(var(--space-3xl) + clamp(6rem, 9vw, 9rem));
+  top: calc(var(--space-3xl) + var(--space-lg) + clamp(9.75rem, 10.875vw, 11.25rem));
   z-index: 1;
   display: grid;
   width: 3.25rem;
   min-height: 3.25rem;
   place-items: center;
-  border: 1px solid color-mix(in srgb, var(--color-text-primary) 40%, transparent);
-  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--color-text-primary) 72%, transparent);
+  border-radius: var(--radius-xs);
   color: var(--color-text-primary);
-  background: color-mix(in srgb, var(--color-surface-base) 76%, transparent);
+  background: var(--color-surface-raised);
   backdrop-filter: blur(8px);
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--color-text-primary) 70%, transparent);
   cursor: pointer;
   pointer-events: auto;
   transform: translateY(-50%);
@@ -78,7 +83,8 @@
     transform var(--duration-base) var(--ease-emphasized),
     background-color var(--duration-fast) var(--ease-standard),
     border-color var(--duration-fast) var(--ease-standard),
-    color var(--duration-fast) var(--ease-standard);
+    color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
 }
 .worksControls button:nth-of-type(1) {
   left: clamp(3.5rem, 4vw, 4rem);
@@ -96,8 +102,9 @@
 }
 .worksControls button:hover {
   border-color: var(--color-accent);
-  color: var(--color-accent-contrast);
-  background: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-surface-overlay);
+  box-shadow: 0 4px 0 var(--color-accent);
 }
 .worksViewport {
   position: relative;
@@ -117,10 +124,6 @@
   }
 }
 .worksTrack {
-  --works-card-size: clamp(26rem, 29vw, 30rem);
-  --works-card-overlap: clamp(1.25rem, 1.45vw, 1.75rem);
-  --works-edge-space: clamp(2rem, 3vw, 4rem);
-
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
@@ -209,10 +212,11 @@
   list-style: none;
 }
 .worksTags li {
-  padding: 0.18rem var(--space-2xs);
-  border: 1px solid color-mix(in srgb, var(--color-accent) 68%, transparent);
+  padding: 0.25rem var(--space-2xs);
+  border: 1px solid var(--color-accent);
   border-radius: var(--radius-xs);
-  color: var(--color-accent);
+  color: var(--color-text-primary);
+  background: transparent;
   font: var(--text-xs) var(--font-mono);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
@@ -221,11 +225,71 @@
     color var(--duration-fast) var(--ease-standard);
 }
 .workMeta > a {
+  display: inline-flex;
   width: fit-content;
+  align-items: center;
+  gap: var(--space-3xs);
   margin-top: var(--space-2xs);
-  color: var(--color-accent);
+  color: var(--color-text-primary);
   font-size: var(--text-sm);
   white-space: nowrap;
+}
+.worksFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+.worksPagination {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  margin-inline-start: clamp(3rem, 8vw, 8rem);
+}
+.worksPagination button {
+  width: 0.45rem;
+  height: 0.45rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-border-strong);
+  cursor: pointer;
+  transition:
+    width var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
+}
+.worksPagination button:hover,
+.worksPagination button:focus-visible {
+  background: var(--color-accent-hover);
+}
+.worksPagination .worksPaginationActive {
+  width: 2.25rem;
+  background: var(--color-accent);
+}
+.worksAllButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: 0.55rem var(--space-sm);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-xs);
+  color: var(--color-text-primary);
+  background: var(--color-surface-raised);
+  font: var(--text-xs) var(--font-mono);
+  cursor: pointer;
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
+.worksAllButton span {
+  color: var(--color-accent);
+}
+.worksAllButton:hover,
+.worksAllButton:focus-visible {
+  border-color: var(--color-accent);
+  background: var(--color-surface-overlay);
 }
 .workCardFocused .workMeta,
 .workCard:focus-within .workMeta {
@@ -274,7 +338,7 @@
     transform: none;
   }
   .worksControls button {
-    top: calc(var(--space-2xl) + 6rem);
+    top: calc(var(--space-2xl) + var(--space-lg) + 27.5vw);
     width: 2.75rem;
     min-height: 2.75rem;
   }
@@ -292,12 +356,13 @@
     margin-inline: 0;
   }
   .worksTrack {
+    gap: 0;
+    padding: var(--space-lg) 0 var(--space-xl);
+  }
+  .worksSection {
     --works-card-size: 88vw;
     --works-card-overlap: 0rem;
     --works-edge-space: var(--space-xs);
-
-    gap: 0;
-    padding: var(--space-lg) 0 var(--space-xl);
   }
   .workCard {
     flex-basis: var(--works-card-size);
