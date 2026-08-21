@@ -72,6 +72,8 @@
   place-items: center;
   border: 1px solid color-mix(in srgb, var(--color-text-primary) 72%, transparent);
   border-radius: var(--radius-xs);
+  outline: 1px solid color-mix(in srgb, var(--color-text-primary) 88%, transparent);
+  outline-offset: 3px;
   color: var(--color-text-primary);
   background: var(--color-surface-raised);
   backdrop-filter: blur(8px);
@@ -285,6 +287,8 @@
   padding: 0.65rem calc(var(--space-sm) + 0.1rem);
   border: 1px solid color-mix(in srgb, var(--color-text-primary) 72%, transparent);
   border-radius: var(--radius-xs);
+  outline: 1px solid color-mix(in srgb, var(--color-text-primary) 88%, transparent);
+  outline-offset: 3px;
   color: var(--color-text-primary);
   background: var(--color-surface-raised);
   box-shadow: 0 4px 0 var(--color-surface-base);
@@ -314,10 +318,10 @@
 }
 .worksAllButton:hover span,
 .worksAllButton:focus-visible span {
-  color: var(--color-accent);
+  color: var(--color-surface-base);
 }
 .worksAllButton:active {
-  box-shadow: 0 1px 0 color-mix(in srgb, var(--color-text-primary) 58%, transparent);
+  box-shadow: 0 1px 0 var(--color-surface-base);
   transform: translateY(4px);
 }
 .workCardFocused .workMeta,
