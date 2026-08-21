@@ -75,7 +75,7 @@
   color: var(--color-text-primary);
   background: var(--color-surface-raised);
   backdrop-filter: blur(8px);
-  box-shadow: 0 3px 0 color-mix(in srgb, var(--color-text-primary) 58%, transparent);
+  box-shadow: 0 4px 0 var(--color-surface-base);
   cursor: pointer;
   pointer-events: auto;
   font-size: 1.5rem;
@@ -104,9 +104,9 @@
 .worksControls button:hover,
 .worksControls button:focus-visible {
   border-color: color-mix(in srgb, var(--color-text-primary) 72%, transparent);
-  color: var(--color-accent);
-  background: var(--color-surface-overlay);
-  box-shadow: 0 1px 0 color-mix(in srgb, var(--color-text-primary) 58%, transparent);
+  color: var(--color-surface-base);
+  background: var(--color-text-primary);
+  box-shadow: 0 1px 0 var(--color-surface-base);
   transform: translateY(-50%) translateY(2px);
 }
 .worksControls button:focus-visible {
@@ -114,7 +114,7 @@
   outline-offset: 3px;
 }
 .worksControls button:active {
-  box-shadow: 0 1px 0 color-mix(in srgb, var(--color-text-primary) 58%, transparent);
+  box-shadow: 0 1px 0 var(--color-surface-base);
   transform: translateY(-50%) translateY(4px);
 }
 .worksViewport {
@@ -287,7 +287,7 @@
   border-radius: var(--radius-xs);
   color: var(--color-text-primary);
   background: var(--color-surface-raised);
-  box-shadow: 0 3px 0 color-mix(in srgb, var(--color-text-primary) 58%, transparent);
+  box-shadow: 0 4px 0 var(--color-surface-base);
   font: var(--text-sm) var(--font-mono);
   cursor: pointer;
   transition:
@@ -303,8 +303,9 @@
 .worksAllButton:hover,
 .worksAllButton:focus-visible {
   border-color: color-mix(in srgb, var(--color-text-primary) 72%, transparent);
-  background: var(--color-surface-overlay);
-  box-shadow: 0 1px 0 color-mix(in srgb, var(--color-text-primary) 58%, transparent);
+  color: var(--color-surface-base);
+  background: var(--color-text-primary);
+  box-shadow: 0 1px 0 var(--color-surface-base);
   transform: translateY(2px);
 }
 .worksAllButton:focus-visible {
