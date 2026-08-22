@@ -19,7 +19,7 @@ export function PortfolioSections() {
   const worksScrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [workPage, setWorkPage] = useState(0);
   useMotion(ref);
-  const { works, about, stack, experience, services, contact, footer } = content;
+  const { works, about, stack, services, contact, footer } = content;
   const projects = getProjects(locale);
   const allProjects = projects;
   const allWorksLabel = locale === "pt-BR" ? "Ver todos" : "View all";
@@ -222,13 +222,7 @@ export function PortfolioSections() {
           </div>
         </div>
       </section>
-      <section id="stack" className={styles.section}>
-        <div className="container">
-          <p className={styles.eyebrow} data-reveal>
-            {stack.eyebrow}
-          </p>
-          <h2 data-text-reveal>{stack.title}</h2>
-        </div>
+      <section id="stack" className={`${styles.section} ${styles.stackSection}`}>
         <div className={styles.stackWrapper}>
           {stack.groups.map((group, groupIndex) => {
             const isLearningGroup = groupIndex === 1;
@@ -272,25 +266,6 @@ export function PortfolioSections() {
               </div>
             );
           })}
-        </div>
-      </section>
-      <section
-        id="experiencia"
-        className={`${styles.section} ${styles.journeySection}`}
-      >
-        <div className="container">
-          <p className={styles.eyebrow} data-reveal>
-            {experience.eyebrow}
-          </p>
-          <h2 data-text-reveal>{experience.title}</h2>
-          <div className={styles.journey} data-reveal>
-            {experience.milestones.map((milestone) => (
-              <span key={milestone.label}>
-                {milestone.label}
-                <strong>{milestone.value}</strong>
-              </span>
-            ))}
-          </div>
         </div>
       </section>
       <section id="servicos" className={styles.section}>

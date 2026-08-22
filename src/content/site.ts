@@ -54,8 +54,6 @@ export const siteContent = {
       ],
     },
     stack: {
-      eyebrow: "Stack",
-      title: "Base técnica em evolução.",
       groups: [
         {
           label: "Base principal",
@@ -65,17 +63,6 @@ export const siteContent = {
           label: "Em aprendizado",
           items: ["TypeScript", "PostgreSQL", "Drizzle ORM", "Next.js"],
         },
-      ],
-    },
-    experience: {
-      eyebrow: "Jornada",
-      title: "Prática, estudo e construção.",
-      copy: "2026 — Graduando em Ciência da Computação. Minha experiência prática vem da construção de aplicações web completas, do estudo contínuo e da vontade de transformar boas ideias em produtos digitais consistentes.",
-      milestones: [
-        { label: "Agora", value: "Front-end" },
-        { label: "2026", value: "Ciência da Computação" },
-        { label: "Construindo", value: "Projetos" },
-        { label: "Próximo", value: "Full stack" },
       ],
     },
     services: {
@@ -162,8 +149,6 @@ export const siteContent = {
       ],
     },
     stack: {
-      eyebrow: "Stack",
-      title: "A technical foundation in motion.",
       groups: [
         {
           label: "Core stack",
@@ -173,17 +158,6 @@ export const siteContent = {
           label: "Currently learning",
           items: ["TypeScript", "PostgreSQL", "Drizzle ORM", "Next.js"],
         },
-      ],
-    },
-    experience: {
-      eyebrow: "Journey",
-      title: "Practice, learning and building.",
-      copy: "2026 — Computer Science undergraduate. My practical experience comes from building complete web applications, continuous study and a drive to turn strong ideas into consistent digital products.",
-      milestones: [
-        { label: "Now", value: "Front-end" },
-        { label: "2026", value: "Computer Science" },
-        { label: "Building", value: "Projects" },
-        { label: "Next", value: "Full stack" },
       ],
     },
     services: {
